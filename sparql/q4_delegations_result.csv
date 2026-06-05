@@ -1,0 +1,3 @@
+delegator,delegatee,task
+http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#SummaryTask
+http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlannerAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#CodeAnalysisTask

@@ -1,0 +1,3 @@
+agent,tool,resource
+http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#CodeInterpreterTool,http://www.ege.edu.tr/cs/ontology/llm-agent#CodeResource
+http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#WebSearchTool,http://www.ege.edu.tr/cs/ontology/llm-agent#WebResource

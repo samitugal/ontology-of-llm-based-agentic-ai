@@ -1,0 +1,217 @@
+Python 3.12.12  |  2026-05-29T19:22:43.029998+00:00
+Paket surumleri: langchain=1.3.2, langchain_core=1.4.0, langgraph=?, crewai=1.14.6
+
+========================================================================
+LangChain
+========================================================================
+Cozumlenen: 29/29
+
+[Agent]  <- langgraph.prebuilt:create_react_agent
+    sinif : builtins.function  (function)
+    MRO   : function
+
+[AgentGroup]  <- langgraph.graph:StateGraph
+    sinif : langgraph.graph.state.StateGraph  (class)
+    MRO   : StateGraph <- Generic
+
+[Role]  <- langchain_core.messages:SystemMessage
+    sinif : langchain_core.messages.system.SystemMessage  (class)
+    MRO   : SystemMessage <- BaseMessage <- Serializable <- BaseModel <- ABC
+
+[LLMModel]  <- langchain_core.language_models.chat_models:BaseChatModel
+    sinif : langchain_core.language_models.chat_models.BaseChatModel  (class)
+    MRO   : BaseChatModel <- BaseLanguageModel[AIMessage] <- BaseLanguageModel <- RunnableSerializable[Union[PromptValue, str, Sequence[Union[BaseMessage, list[str], tuple[str, str], str, dict[str, Any]]]], TypeVar] <- RunnableSerializable <- Serializable <- BaseModel <- Runnable <- ABC <- Generic
+
+[ModelConfiguration]  <- langchain_core.runnables:RunnableConfig
+    sinif : langchain_core.runnables.config.RunnableConfig  (class)
+    MRO   : RunnableConfig <- dict
+
+[Session]  <- langgraph.checkpoint.base:Checkpoint
+    sinif : langgraph.checkpoint.base.Checkpoint  (class)
+    MRO   : Checkpoint <- dict
+
+[Message]  <- langchain_core.messages:BaseMessage
+    sinif : langchain_core.messages.base.BaseMessage  (class)
+    MRO   : BaseMessage <- Serializable <- BaseModel <- ABC
+
+[MessageRole]  <- langchain_core.messages:AIMessage
+    sinif : langchain_core.messages.ai.AIMessage  (class)
+    MRO   : AIMessage <- BaseMessage <- Serializable <- BaseModel <- ABC
+
+[Context]  <- langchain_core.runnables:RunnableConfig
+    sinif : langchain_core.runnables.config.RunnableConfig  (class)
+    MRO   : RunnableConfig <- dict
+
+[Tool]  <- langchain_core.tools:BaseTool
+    sinif : langchain_core.tools.base.BaseTool  (class)
+    MRO   : BaseTool <- RunnableSerializable[Union[str, dict, ToolCall], Any] <- RunnableSerializable <- Serializable <- BaseModel <- Runnable <- ABC <- Generic
+
+[ToolCall]  <- langchain_core.messages.tool:ToolCall
+    sinif : langchain_core.messages.tool.ToolCall  (class)
+    MRO   : ToolCall <- dict
+
+[ToolResult]  <- langchain_core.messages:ToolMessage
+    sinif : langchain_core.messages.tool.ToolMessage  (class)
+    MRO   : ToolMessage <- BaseMessage <- Serializable <- BaseModel <- ABC <- ToolOutputMixin
+
+[Resource]  <- langchain_core.documents:Document
+    sinif : langchain_core.documents.base.Document  (class)
+    MRO   : Document <- BaseMedia <- Serializable <- BaseModel <- ABC
+
+[Action]  <- langchain_core.agents:AgentAction
+    sinif : langchain_core.agents.AgentAction  (class)
+    MRO   : AgentAction <- Serializable <- BaseModel <- ABC
+
+[Capability]  <- langchain_core.runnables:Runnable
+    sinif : langchain_core.runnables.base.Runnable  (class)
+    MRO   : Runnable <- ABC <- Generic
+
+[Memory]  <- langgraph.store.base:BaseStore
+    sinif : langgraph.store.base.BaseStore  (class)
+    MRO   : BaseStore <- ABC
+
+[ShortTermMemory]  <- langgraph.checkpoint.memory:InMemorySaver
+    sinif : langgraph.checkpoint.memory.InMemorySaver  (class)
+    MRO   : InMemorySaver <- BaseCheckpointSaver <- Generic <- AbstractContextManager <- AbstractAsyncContextManager <- ABC
+
+[LongTermMemory]  <- langgraph.store.base:BaseStore
+    sinif : langgraph.store.base.BaseStore  (class)
+    MRO   : BaseStore <- ABC
+
+[SemanticMemory]  <- langchain_core.vectorstores:VectorStore
+    sinif : langchain_core.vectorstores.base.VectorStore  (class)
+    MRO   : VectorStore <- ABC
+
+[Prompt]  <- langchain_core.prompts:BasePromptTemplate
+    sinif : langchain_core.prompts.base.BasePromptTemplate  (class)
+    MRO   : BasePromptTemplate <- RunnableSerializable[dict, PromptValue] <- RunnableSerializable <- Serializable <- BaseModel <- Runnable <- ABC <- Generic
+
+[SystemPrompt]  <- langchain_core.prompts:SystemMessagePromptTemplate
+    sinif : langchain_core.prompts.chat.SystemMessagePromptTemplate  (class)
+    MRO   : SystemMessagePromptTemplate <- _StringImageMessagePromptTemplate <- BaseMessagePromptTemplate <- Serializable <- BaseModel <- ABC
+
+[PromptTemplate]  <- langchain_core.prompts:ChatPromptTemplate
+    sinif : langchain_core.prompts.chat.ChatPromptTemplate  (class)
+    MRO   : ChatPromptTemplate <- BaseChatPromptTemplate <- BasePromptTemplate <- RunnableSerializable[dict, PromptValue] <- RunnableSerializable <- Serializable <- BaseModel <- Runnable <- ABC <- Generic
+
+[Parameter]  <- langchain_core.runnables:RunnableConfig
+    sinif : langchain_core.runnables.config.RunnableConfig  (class)
+    MRO   : RunnableConfig <- dict
+
+[Task]  <- langchain_core.runnables:Runnable
+    sinif : langchain_core.runnables.base.Runnable  (class)
+    MRO   : Runnable <- ABC <- Generic
+
+[Plan]  <- langchain_core.agents:AgentAction
+    sinif : langchain_core.agents.AgentAction  (class)
+    MRO   : AgentAction <- Serializable <- BaseModel <- ABC
+
+[Workflow]  <- langgraph.graph:StateGraph
+    sinif : langgraph.graph.state.StateGraph  (class)
+    MRO   : StateGraph <- Generic
+
+[Delegation]  <- langgraph.types:Command
+    sinif : langgraph.types.Command  (class)
+    MRO   : Command <- Generic <- ToolOutputMixin
+
+[Channel]  <- langgraph.channels.base:BaseChannel
+    sinif : langgraph.channels.base.BaseChannel  (class)
+    MRO   : BaseChannel <- Generic <- ABC
+
+[ExecutionContext]  <- langchain_core.runnables:RunnableConfig
+    sinif : langchain_core.runnables.config.RunnableConfig  (class)
+    MRO   : RunnableConfig <- dict
+
+========================================================================
+CrewAI
+========================================================================
+Cozumlenen: 17/23
+
+[Agent]  <- crewai:Agent
+    sinif : crewai.agent.core.Agent  (class)
+    MRO   : Agent <- BaseAgent <- BaseModel <- ABC
+
+[AgentGroup]  <- crewai:Crew
+    sinif : crewai.crew.Crew  (class)
+    MRO   : Crew <- FlowTrackable <- BaseModel
+
+[AgentTemplate]  <- crewai:Agent
+    sinif : crewai.agent.core.Agent  (class)
+    MRO   : Agent <- BaseAgent <- BaseModel <- ABC
+
+[Role]  <- crewai:Agent
+    sinif : crewai.agent.core.Agent  (class)
+    MRO   : Agent <- BaseAgent <- BaseModel <- ABC
+
+[LLMModel]  <- crewai:LLM
+    sinif : crewai.llm.LLM  (class)
+    MRO   : LLM <- BaseLLM <- BaseModel <- ABC
+
+[ModelConfiguration]  <- crewai:LLM
+    sinif : crewai.llm.LLM  (class)
+    MRO   : LLM <- BaseLLM <- BaseModel <- ABC
+
+[Session]  <- COZUMLENEMEDI
+    x crewai.memory.contextual.contextual_memory:ContextualMemory -> ModuleNotFoundError: No module named 'crewai.memory.contextual'
+
+[Message]  <- crewai.tasks.task_output:TaskOutput
+    sinif : crewai.tasks.task_output.TaskOutput  (class)
+    MRO   : TaskOutput <- BaseModel
+
+[Tool]  <- crewai.tools:BaseTool
+    sinif : crewai.tools.base_tool.BaseTool  (class)
+    MRO   : BaseTool <- BaseModel <- ABC
+
+[ToolResult]  <- crewai.tools.tool_usage:ToolUsage
+    sinif : crewai.tools.tool_usage.ToolUsage  (class)
+    MRO   : ToolUsage
+
+[Resource]  <- crewai.knowledge.knowledge:Knowledge
+    sinif : crewai.knowledge.knowledge.Knowledge  (class)
+    MRO   : Knowledge <- BaseModel
+
+[Memory]  <- COZUMLENEMEDI
+    x crewai.memory.memory:Memory -> ModuleNotFoundError: No module named 'crewai.memory.memory'
+
+[ShortTermMemory]  <- COZUMLENEMEDI
+    x crewai.memory.short_term.short_term_memory:ShortTermMemory -> ModuleNotFoundError: No module named 'crewai.memory.short_term'
+    x crewai.memory:ShortTermMemory -> AttributeError: crewai.memory icinde ShortTermMemory yok
+
+[LongTermMemory]  <- COZUMLENEMEDI
+    x crewai.memory.long_term.long_term_memory:LongTermMemory -> ModuleNotFoundError: No module named 'crewai.memory.long_term'
+    x crewai.memory:LongTermMemory -> AttributeError: crewai.memory icinde LongTermMemory yok
+
+[EpisodicMemory]  <- COZUMLENEMEDI
+    x crewai.memory.external.external_memory:ExternalMemory -> ModuleNotFoundError: No module named 'crewai.memory.external'
+
+[SemanticMemory]  <- COZUMLENEMEDI
+    x crewai.memory.entity.entity_memory:EntityMemory -> ModuleNotFoundError: No module named 'crewai.memory.entity'
+    x crewai.memory:EntityMemory -> AttributeError: crewai.memory icinde EntityMemory yok
+
+[Prompt]  <- crewai.utilities.prompts:Prompts
+    sinif : crewai.utilities.prompts.Prompts  (class)
+    MRO   : Prompts <- BaseModel
+
+[Task]  <- crewai:Task
+    sinif : crewai.task.Task  (class)
+    MRO   : Task <- BaseModel
+
+[Plan]  <- crewai.utilities.planning_handler:CrewPlanner
+    sinif : crewai.utilities.planning_handler.CrewPlanner  (class)
+    MRO   : CrewPlanner
+
+[Workflow]  <- crewai:Process
+    sinif : crewai.process.Process  (class)
+    MRO   : Process <- str <- Enum
+
+[Flow]  <- crewai.flow.flow:Flow
+    sinif : crewai.flow.flow.Flow  (class)
+    MRO   : Flow <- BaseModel <- Generic
+
+[Delegation]  <- crewai.tools.agent_tools.agent_tools:AgentTools
+    sinif : crewai.tools.agent_tools.agent_tools.AgentTools  (class)
+    MRO   : AgentTools
+
+[ExecutionContext]  <- crewai.crews.crew_output:CrewOutput
+    sinif : crewai.crews.crew_output.CrewOutput  (class)
+    MRO   : CrewOutput <- BaseModel

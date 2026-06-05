@@ -1,0 +1,11 @@
+PREFIX : <http://www.ege.edu.tr/cs/ontology/llm-agent#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?agent ?memoryType WHERE {
+  ?agent rdf:type :Agent ;
+         :hasMemory ?mem .
+  ?mem rdf:type ?memoryType .
+  FILTER(?memoryType IN (:ShortTermMemory, :LongTermMemory,
+                         :EpisodicMemory, :SemanticMemory))
+}
+ORDER BY ?agent ?memoryType

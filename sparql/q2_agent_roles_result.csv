@@ -1,0 +1,5 @@
+agent,role
+http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#Worker
+http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#Orchestrator
+http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlannerAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#Worker
+http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#Reviewer

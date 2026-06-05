@@ -1,0 +1,2953 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.ege.edu.tr/cs/ontology/llm-agent#"
+     xml:base="http://www.ege.edu.tr/cs/ontology/llm-agent"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:oasis="http://www.dmi.unict.it/oasis2#"
+     xmlns:llm-agent="http://www.ege.edu.tr/cs/ontology/llm-agent#">
+    <owl:Ontology rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent">
+        <owl:versionIRI rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent/0.1"/>
+        <owl:imports rdf:resource="http://www.dmi.unict.it/oasis2"/>
+        <rdfs:comment>BDM Tabanli Etmen Sistemleri Ontolojisi. OASIS 2 ile entegre, cerceve bagimsiz LLM-agent ontolojisi.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- xsd:string -->
+
+    <rdfs:Datatype rdf:about="xsd:string"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#accessesResource -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#accessesResource">
+        <rdfs:label xml:lang="en">accesses resource</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Tool'un erisim sagladigi Resource'u belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Resource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#capabilityOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#capabilityOf">
+        <rdfs:label xml:lang="en">capability of</rdfs:label>
+        <rdfs:comment xml:lang="tr">hasCapability'nin tersi: bir Capability'nin sahibi olan Agent'i isaret eden iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasCapability"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#coordinatesVia -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#coordinatesVia">
+        <rdfs:label xml:lang="en">coordinates via</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir AgentGroup'un uzerinden koordine oldugu Workflow'u belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#delegatedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#delegatedBy">
+        <rdfs:label xml:lang="en">delegated by</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Delegation kaydinin hangi Agent tarafindan baslatildigini belirten iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#delegatesTo"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#delegatedTask -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#delegatedTask">
+        <rdfs:label xml:lang="en">delegated task</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Delegation icinde devredilen Task'i isaret eden iliski (functional).</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#delegatesTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#delegatesTo">
+        <rdfs:label xml:lang="en">delegates to</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in gorev devrettigi diger Agent'i isaret eden iliski (asymmetric + irreflexive).</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#delegator -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#delegator">
+        <rdfs:label xml:lang="en">delegator</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Delegation icindeki devreden Agent'i isaret eden iliski (functional).</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#followsProtocol -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#followsProtocol">
+        <rdfs:label xml:lang="en">follows protocol</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Channel'in uyguladigi Protocol'u belirten iliski.</rdfs:comment>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Channel"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Protocol"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#forRole -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#forRole">
+        <rdfs:label xml:lang="en">for role</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir AgentTemplate'in hangi Role icin tasarlandigini belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Prompt"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MessageRole"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#generatedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#generatedBy">
+        <rdfs:label xml:lang="en">generated by</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Message'in uretildigi Session'i isaret eden iliski (functional).</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentMessage"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasAction">
+        <rdfs:label xml:lang="en">has action</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Workflow veya Plan'in icerdigi Action'i baglayan iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Action"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasCapability -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasCapability">
+        <rdfs:label xml:lang="en">has capability</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in sahip oldugu Capability'i baglayan iliski (someValuesFrom kisitiyla zorunlu).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasConfiguration -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasConfiguration">
+        <rdfs:label xml:lang="en">has configuration</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in calistigi ModelConfiguration'i belirten iliski (functional + tam-1 kardinalite).</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasContext -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasContext">
+        <rdfs:label xml:lang="en">has context</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent veya Session'in aktif Context'ini baglayan iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Context"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasMember -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMember">
+        <rdfs:label xml:lang="en">has member</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir AgentGroup'un icerdigi Agent'lari baglayan iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#memberOf"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasMemory -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMemory">
+        <rdfs:label xml:lang="en">has memory</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in sahip oldugu Memory'yi baglayan iliski; AutonomousAgent ve MemoryAugmentedAgent tanimlari icin kullanilir.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasMemoryStrategy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMemoryStrategy">
+        <rdfs:label xml:lang="en">has memory strategy</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Memory'nin uyguladigi MemoryStrategy'i belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryStrategy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasMessage -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMessage">
+        <rdfs:label xml:lang="en">has message</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Session'in icerdigi Message'lari baglayan iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#partOfSession"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasMessageRole -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMessageRole">
+        <rdfs:label xml:lang="en">has message role</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Message'in MessageRole'unu belirten iliski (functional).</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MessageRole"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasObservation -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasObservation">
+        <rdfs:label xml:lang="en">has observation</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Session'in urettigi Observation kayitlarini baglayan iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#observedIn"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasParameter -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasParameter">
+        <rdfs:label xml:lang="en">has parameter</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir ModelConfiguration'in icerdigi Parameter'leri baglayan iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasPlan -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasPlan">
+        <rdfs:label xml:lang="en">has plan</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Task veya Workflow'un izledigi Plan'i belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasPolicy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasPolicy">
+        <rdfs:label xml:lang="en">has policy</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in uyguladigi Policy'leri baglayan iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Policy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasPrompt -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasPrompt">
+        <rdfs:label xml:lang="en">has prompt</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent veya AgentTemplate'in kullandigi Prompt'u baglayan iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#promptOf"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Prompt"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasRole -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasRole">
+        <rdfs:label xml:lang="en">has role</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in ustlendigi Role'u baglayan iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#playedBy"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasSession -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasSession">
+        <rdfs:label xml:lang="en">has session</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in dahil oldugu Session'lari baglayan iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#sessionOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasSharedMemory -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasSharedMemory">
+        <rdfs:label xml:lang="en">has shared memory</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir AgentGroup'un paylasilan Memory'sini belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasStep -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasStep">
+        <rdfs:label xml:lang="en">has step</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Plan'in icerdigi Task adimlarini baglayan iliski (allValuesFrom Task).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#instantiates -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#instantiates">
+        <rdfs:label xml:lang="en">instantiates</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in hangi AgentTemplate'ten somutlastirildigini belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentTemplate"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#invokedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#invokedBy">
+        <rdfs:label xml:lang="en">invoked by</rdfs:label>
+        <rdfs:comment xml:lang="tr">invokesTool'un tersi: bir Tool'un hangi ToolCall tarafindan cagrildigini belirten iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#invokesTool"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#invokesTool -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#invokesTool">
+        <rdfs:label xml:lang="en">invokes tool</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir ToolCall'in cagirdigi Tool'u belirten iliski.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#madeBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#madeBy">
+        <rdfs:label xml:lang="en">made by</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir ToolCall'in hangi Agent tarafindan yapildigini belirten iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#makesToolCall"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#makesToolCall -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#makesToolCall">
+        <rdfs:label xml:lang="en">makes tool call</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in urettigi ToolCall'lari baglayan iliski; AutonomousAgent tanimi icin kullanilir.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#memberOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#memberOf">
+        <rdfs:label xml:lang="en">member of</rdfs:label>
+        <rdfs:comment xml:lang="tr">hasMember'in tersi: bir Agent'in dahil oldugu AgentGroup'u belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#observedIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#observedIn">
+        <rdfs:label xml:lang="en">observed in</rdfs:label>
+        <rdfs:comment xml:lang="tr">hasObservation'in tersi: bir Observation'in ait oldugu Session'i belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#partOfSession -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#partOfSession">
+        <rdfs:label xml:lang="en">part of session</rdfs:label>
+        <rdfs:comment xml:lang="tr">hasMessage'in tersi: bir Message'in ait oldugu Session'i belirten iliski.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#playedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#playedBy">
+        <rdfs:label xml:lang="en">played by</rdfs:label>
+        <rdfs:comment xml:lang="tr">hasRole'un tersi: bir Role'un hangi Agent tarafindan ustlenildigini belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Role"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#producesResult -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#producesResult">
+        <rdfs:label xml:lang="en">produces result</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir ToolCall'in urettigi ToolResult'u belirten iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#resultOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#promptOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#promptOf">
+        <rdfs:label xml:lang="en">prompt of</rdfs:label>
+        <rdfs:comment xml:lang="tr">hasPrompt'un tersi: bir Prompt'un hangi Agent veya AgentTemplate'e ait oldugunu belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Prompt"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#recordsSession -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#recordsSession">
+        <rdfs:label xml:lang="en">records session</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Memory'nin kayit altinda tuttugu Session'i belirten iliski; hafiza katmaninda Session'i MemoryContent olarak baglar.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#EpisodicMemory"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#resultOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#resultOf">
+        <rdfs:label xml:lang="en">result of</rdfs:label>
+        <rdfs:comment xml:lang="tr">producesResult'un tersi: bir ToolResult'un hangi ToolCall'a ait oldugunu belirten iliski.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#runsIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#runsIn">
+        <rdfs:label xml:lang="en">runs in</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Task veya Workflow'un calistirildigi ExecutionContext'i belirten iliski.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionContext"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#sessionOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#sessionOf">
+        <rdfs:label xml:lang="en">session of</rdfs:label>
+        <rdfs:comment xml:lang="tr">hasSession'in tersi: bir Session'in hangi Agent'a ait oldugunu belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#storesMessage -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#storesMessage">
+        <rdfs:label xml:lang="en">stores message</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Memory'nin sakladigi Message'lari belirten iliski; hafiza katmaninda Message'i MemoryContent olarak baglar.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ShortTermMemory"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#subtaskOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#subtaskOf">
+        <rdfs:label xml:lang="en">subtask of</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Subtask'in hangi Task'a ait oldugunu belirten iliski (transitif olabilen alt-gorev iliskisi).</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Subtask"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#toolFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#toolFor">
+        <rdfs:label xml:lang="en">tool for</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Tool'un hangi Capability'i destekledigini belirten iliski.</rdfs:comment>
+        <owl:inverseOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#usesTool"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#triggeredBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#triggeredBy">
+        <rdfs:label xml:lang="en">triggered by</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Action veya Workflow'un hangi Event/Agent tarafindan tetiklendigini belirten iliski.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Policy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#usesModel -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#usesModel">
+        <rdfs:label xml:lang="en">uses model</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir ModelConfiguration'in basvurdugu LLMModel'i belirten iliski.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#usesTool -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#usesTool">
+        <rdfs:label xml:lang="en">uses tool</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent veya Capability'nin kullandigi Tool'u belirten iliski.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#viaChannel -->
+
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#viaChannel">
+        <rdfs:label xml:lang="en">via channel</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Delegation veya Message'in iletildigi Channel'i belirten iliski.</rdfs:comment>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Channel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#accessMode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#accessMode">
+        <rdfs:label xml:lang="en">access mode</rdfs:label>
+        <rdfs:comment xml:lang="tr">Resource'un erisim modu (read, write, read-write).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#actionName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#actionName">
+        <rdfs:label xml:lang="en">action name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Action ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Action"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#agentId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#agentId">
+        <rdfs:label xml:lang="en">agent id</rdfs:label>
+        <rdfs:comment xml:lang="tr">Agent ornegi icin essiz tanimlayici.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#agentName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#agentName">
+        <rdfs:label xml:lang="en">agent name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Agent ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#agentVersion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#agentVersion">
+        <rdfs:label xml:lang="en">agent version</rdfs:label>
+        <rdfs:comment xml:lang="tr">Agent yapilandirmasinin surum etiketi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#callId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#callId">
+        <rdfs:label xml:lang="en">call id</rdfs:label>
+        <rdfs:comment xml:lang="tr">ToolCall ornegi icin essiz tanimlayici.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#callTimestamp -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#callTimestamp">
+        <rdfs:label xml:lang="en">call timestamp</rdfs:label>
+        <rdfs:comment xml:lang="tr">ToolCall'in baslatildigi zaman damgasi (xsd:dateTime).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#capabilityName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#capabilityName">
+        <rdfs:label xml:lang="en">capability name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Capability ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#channelEndpoint -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#channelEndpoint">
+        <rdfs:label xml:lang="en">channel endpoint</rdfs:label>
+        <rdfs:comment xml:lang="tr">Channel'in baglandigi uc nokta (URI veya adres).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Channel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#channelType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#channelType">
+        <rdfs:label xml:lang="en">channel type</rdfs:label>
+        <rdfs:comment xml:lang="tr">Channel turu (http, websocket, in-process vb.).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Channel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#contextId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#contextId">
+        <rdfs:label xml:lang="en">context id</rdfs:label>
+        <rdfs:comment xml:lang="tr">Context ornegi icin essiz tanimlayici.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionContext"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#contextLength -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#contextLength">
+        <rdfs:label xml:lang="en">context length</rdfs:label>
+        <rdfs:comment xml:lang="tr">Aktif baglamdaki token sayisi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#contextSnapshot -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#contextSnapshot">
+        <rdfs:label xml:lang="en">context snapshot</rdfs:label>
+        <rdfs:comment xml:lang="tr">Belirli bir andaki Context'in serilestirilmis temsili.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Context"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#contextWindowSize -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#contextWindowSize">
+        <rdfs:label xml:lang="en">context window size</rdfs:label>
+        <rdfs:comment xml:lang="tr">LLMModel'in destekledigi maksimum baglam pencere boyutu (token cinsinden).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Context"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#cost -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#cost">
+        <rdfs:label xml:lang="en">cost</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir cagri veya gorevin tahmini para birimi cinsinden maliyeti.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#createdAt -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#createdAt">
+        <rdfs:label xml:lang="en">created at</rdfs:label>
+        <rdfs:comment xml:lang="tr">Olusturma zaman damgasi (xsd:dateTime).</rdfs:comment>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#delegatedAt -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#delegatedAt">
+        <rdfs:label xml:lang="en">delegated at</rdfs:label>
+        <rdfs:comment xml:lang="tr">Delegation'in gerceklestigi zaman damgasi (xsd:dateTime).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#delegationReason -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#delegationReason">
+        <rdfs:label xml:lang="en">delegation reason</rdfs:label>
+        <rdfs:comment xml:lang="tr">Devir kararinin gerekcesi (serbest metin).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#dueDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#dueDate">
+        <rdfs:label xml:lang="en">due date</rdfs:label>
+        <rdfs:comment xml:lang="tr">Task icin son teslim tarihi (xsd:dateTime).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#embeddingModel -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#embeddingModel">
+        <rdfs:label xml:lang="en">embedding model</rdfs:label>
+        <rdfs:comment xml:lang="tr">SemanticMemory'de kullanilan vektor gomme modelinin adi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SemanticMemory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#endTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#endTime">
+        <rdfs:label xml:lang="en">end time</rdfs:label>
+        <rdfs:comment xml:lang="tr">Session veya Task icin bitis zaman damgasi (xsd:dateTime).</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#environmentVars -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#environmentVars">
+        <rdfs:label xml:lang="en">environment vars</rdfs:label>
+        <rdfs:comment xml:lang="tr">ExecutionContext'e tasinan ortam degiskenleri (JSON veya anahtar-deger).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionContext"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#errorCount -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#errorCount">
+        <rdfs:label xml:lang="en">error count</rdfs:label>
+        <rdfs:comment xml:lang="tr">Session icinde gozlemlenen hata sayisi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#errorMessage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#errorMessage">
+        <rdfs:label xml:lang="en">error message</rdfs:label>
+        <rdfs:comment xml:lang="tr">ToolResult veya Observation icin hata aciklamasi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#executionTimeMs -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#executionTimeMs">
+        <rdfs:label xml:lang="en">execution time ms</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir cagri veya gorevin milisaniye cinsinden suresi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#groupName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#groupName">
+        <rdfs:label xml:lang="en">group name</rdfs:label>
+        <rdfs:comment xml:lang="tr">AgentGroup ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#hasDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#hasDescription">
+        <rdfs:label xml:lang="en">has description</rdfs:label>
+        <rdfs:comment xml:lang="tr">Genel amacli serbest metin aciklama; alan-bagimsiz tutulmustur.</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#inputJson -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#inputJson">
+        <rdfs:label xml:lang="en">input json</rdfs:label>
+        <rdfs:comment xml:lang="tr">ToolCall'in JSON formatinda serilestirilmis girdi argumanlari.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#isActive -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#isActive">
+        <rdfs:label xml:lang="en">is active</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent, Session veya Capability'nin aktif olup olmadigini gosteren bool deger.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#isAsync -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#isAsync">
+        <rdfs:label xml:lang="en">is async</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Task'in asenkron calisip calismadigini gosteren bool deger (ExecutionMode ile esgudum).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#latencyMs -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#latencyMs">
+        <rdfs:label xml:lang="en">latency ms</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir cagri icin milisaniye cinsinden gecikme.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#maxEpisodes -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#maxEpisodes">
+        <rdfs:label xml:lang="en">max episodes</rdfs:label>
+        <rdfs:comment xml:lang="tr">EpisodicMemory'nin saklayabilecegi maksimum epizot sayisi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#EpisodicMemory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#memoryCapacity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#memoryCapacity">
+        <rdfs:label xml:lang="en">memory capacity</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Memory ornegi icin token veya kayit kapasitesi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#messageContent -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#messageContent">
+        <rdfs:label xml:lang="en">message content</rdfs:label>
+        <rdfs:comment xml:lang="tr">Message govdesinin serbest metin icerigi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#messageId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#messageId">
+        <rdfs:label xml:lang="en">message id</rdfs:label>
+        <rdfs:comment xml:lang="tr">Message ornegi icin essiz tanimlayici.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#messageTimestamp -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#messageTimestamp">
+        <rdfs:label xml:lang="en">message timestamp</rdfs:label>
+        <rdfs:comment xml:lang="tr">Message'in olusturuldugu zaman damgasi (xsd:dateTime).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#modelName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#modelName">
+        <rdfs:label xml:lang="en">model name</rdfs:label>
+        <rdfs:comment xml:lang="tr">LLMModel'in adi (orn. gpt-4o, claude-sonnet-4-5).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#modelProvider -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#modelProvider">
+        <rdfs:label xml:lang="en">model provider</rdfs:label>
+        <rdfs:comment xml:lang="tr">LLMModel'in saglayicisi (orn. OpenAI, Anthropic).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#modelVersion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#modelVersion">
+        <rdfs:label xml:lang="en">model version</rdfs:label>
+        <rdfs:comment xml:lang="tr">LLMModel'in surum etiketi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#observedAt -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#observedAt">
+        <rdfs:label xml:lang="en">observed at</rdfs:label>
+        <rdfs:comment xml:lang="tr">Observation'in kaydedildigi zaman damgasi (xsd:dateTime).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#paramName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#paramName">
+        <rdfs:label xml:lang="en">param name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Parameter'in adi (orn. temperature).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#paramType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#paramType">
+        <rdfs:label xml:lang="en">param type</rdfs:label>
+        <rdfs:comment xml:lang="tr">Parameter'in tipi (orn. xsd:double).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#paramValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#paramValue">
+        <rdfs:label xml:lang="en">param value</rdfs:label>
+        <rdfs:comment xml:lang="tr">Parameter'in degeri (string olarak serilestirilmis).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#persistenceBackend -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#persistenceBackend">
+        <rdfs:label xml:lang="en">persistence backend</rdfs:label>
+        <rdfs:comment xml:lang="tr">LongTermMemory icin kullanilan kalici depolama arka ucu (orn. SQLite, Postgres, Redis).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LongTermMemory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#planName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#planName">
+        <rdfs:label xml:lang="en">plan name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Plan ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#planVersion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#planVersion">
+        <rdfs:label xml:lang="en">plan version</rdfs:label>
+        <rdfs:comment xml:lang="tr">Plan'in surum etiketi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#policyExpression -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#policyExpression">
+        <rdfs:label xml:lang="en">policy expression</rdfs:label>
+        <rdfs:comment xml:lang="tr">Policy'nin makine-okur ifadesi (orn. JSON kurali, DSL).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Policy"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#policyName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#policyName">
+        <rdfs:label xml:lang="en">policy name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Policy ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Policy"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#policyPriority -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#policyPriority">
+        <rdfs:label xml:lang="en">policy priority</rdfs:label>
+        <rdfs:comment xml:lang="tr">Policy'nin uygulanma onceligi (integer).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Policy"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#promptText -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#promptText">
+        <rdfs:label xml:lang="en">prompt text</rdfs:label>
+        <rdfs:comment xml:lang="tr">Prompt'un serbest metin govdesi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Prompt"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#protocolName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#protocolName">
+        <rdfs:label xml:lang="en">protocol name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Protocol ornegi icin insan-okur ad (orn. MCP).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Protocol"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#protocolVersion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#protocolVersion">
+        <rdfs:label xml:lang="en">protocol version</rdfs:label>
+        <rdfs:comment xml:lang="tr">Protocol'un surum etiketi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Protocol"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#resourceType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#resourceType">
+        <rdfs:label xml:lang="en">resource type</rdfs:label>
+        <rdfs:comment xml:lang="tr">Resource'un turu (orn. file, database, api).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#resourceURI -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#resourceURI">
+        <rdfs:label xml:lang="en">resource URI</rdfs:label>
+        <rdfs:comment xml:lang="tr">Resource'a karsilik gelen kaynak URI'si.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#resultPayload -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#resultPayload">
+        <rdfs:label xml:lang="en">result payload</rdfs:label>
+        <rdfs:comment xml:lang="tr">ToolResult'in icerdigi serbest icerik (JSON veya metin).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#resultStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#resultStatus">
+        <rdfs:label xml:lang="en">result status</rdfs:label>
+        <rdfs:comment xml:lang="tr">ToolResult durumu (success, failure, partial).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#roleName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#roleName">
+        <rdfs:label xml:lang="en">role name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Role ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Role"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#sessionId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#sessionId">
+        <rdfs:label xml:lang="en">session id</rdfs:label>
+        <rdfs:comment xml:lang="tr">Session ornegi icin essiz tanimlayici.</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#sessionStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#sessionStatus">
+        <rdfs:label xml:lang="en">session status</rdfs:label>
+        <rdfs:comment xml:lang="tr">Session durumu (active, paused, ended).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#startTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#startTime">
+        <rdfs:label xml:lang="en">start time</rdfs:label>
+        <rdfs:comment xml:lang="tr">Session veya Task icin baslangic zaman damgasi (xsd:dateTime).</rdfs:comment>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#stepOrder -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#stepOrder">
+        <rdfs:label xml:lang="en">step order</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Plan icindeki Task adiminin sira numarasi (integer).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Subtask"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#strategyAlgorithm -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#strategyAlgorithm">
+        <rdfs:label xml:lang="en">strategy algorithm</rdfs:label>
+        <rdfs:comment xml:lang="tr">MemoryStrategy icin kullanilan algoritmanin adi (orn. LRU, FIFO, top-k).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryStrategy"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#strategyName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#strategyName">
+        <rdfs:label xml:lang="en">strategy name</rdfs:label>
+        <rdfs:comment xml:lang="tr">MemoryStrategy ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryStrategy"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#supportsFunctionCalling -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#supportsFunctionCalling">
+        <rdfs:label xml:lang="en">supports function calling</rdfs:label>
+        <rdfs:comment xml:lang="tr">LLMModel'in fonksiyon cagrisi/tool-use ozelligini destekleyip desteklemedigini gosteren bool deger.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#taskName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#taskName">
+        <rdfs:label xml:lang="en">task name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Task ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#taskPriority -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#taskPriority">
+        <rdfs:label xml:lang="en">task priority</rdfs:label>
+        <rdfs:comment xml:lang="tr">Task'in onceligi (integer).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#taskStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#taskStatus">
+        <rdfs:label xml:lang="en">task status</rdfs:label>
+        <rdfs:comment xml:lang="tr">Task durumu (pending, running, completed, failed).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#templateName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#templateName">
+        <rdfs:label xml:lang="en">template name</rdfs:label>
+        <rdfs:comment xml:lang="tr">AgentTemplate veya PromptTemplate ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentTemplate"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#templateVariables -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#templateVariables">
+        <rdfs:label xml:lang="en">template variables</rdfs:label>
+        <rdfs:comment xml:lang="tr">PromptTemplate'in bekledigi degiskenlerin listesi (JSON veya virgulle ayrilmis).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#UserPrompt"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#templateVersion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#templateVersion">
+        <rdfs:label xml:lang="en">template version</rdfs:label>
+        <rdfs:comment xml:lang="tr">AgentTemplate veya PromptTemplate'in surum etiketi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentTemplate"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#tokenCount -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#tokenCount">
+        <rdfs:label xml:lang="en">token count</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Message veya Context icin token sayisi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#toolEndpoint -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#toolEndpoint">
+        <rdfs:label xml:lang="en">tool endpoint</rdfs:label>
+        <rdfs:comment xml:lang="tr">Tool'un cagrilabilecegi endpoint (URI).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#toolName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#toolName">
+        <rdfs:label xml:lang="en">tool name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Tool ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#toolVersion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#toolVersion">
+        <rdfs:label xml:lang="en">tool version</rdfs:label>
+        <rdfs:comment xml:lang="tr">Tool'un surum etiketi.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#ttlSeconds -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ttlSeconds">
+        <rdfs:label xml:lang="en">ttl seconds</rdfs:label>
+        <rdfs:comment xml:lang="tr">Memory icin saniye cinsinden yasam suresi (time-to-live).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ShortTermMemory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#updatedAt -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#updatedAt">
+        <rdfs:label xml:lang="en">updated at</rdfs:label>
+        <rdfs:comment xml:lang="tr">Son guncelleme zaman damgasi (xsd:dateTime).</rdfs:comment>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#vectorDimension -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#vectorDimension">
+        <rdfs:label xml:lang="en">vector dimension</rdfs:label>
+        <rdfs:comment xml:lang="tr">SemanticMemory icin gomme vektor boyutu (orn. 1536).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SemanticMemory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#workflowName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#workflowName">
+        <rdfs:label xml:lang="en">workflow name</rdfs:label>
+        <rdfs:comment xml:lang="tr">Workflow ornegi icin insan-okur ad.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#workflowStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#workflowStatus">
+        <rdfs:label xml:lang="en">workflow status</rdfs:label>
+        <rdfs:comment xml:lang="tr">Workflow durumu (running, completed, failed).</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Action -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Action">
+        <rdfs:label xml:lang="en">Action</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenin bir karar sonucunda gerceklestirdigi somut islem.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Agent -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent">
+        <rdfs:label xml:lang="en">Agent</rdfs:label>
+        <rdfs:comment xml:lang="tr">Karar veren, yonlendiren ve diger bilesenleri orkestre eden temel varlik. BDM tabanli etmenler bu sinifin alt veya birey ornekleridir.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.dmi.unict.it/oasis2#Agent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasCapability"/>
+                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasConfiguration"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup">
+        <rdfs:label xml:lang="en">Agent Group</rdfs:label>
+        <rdfs:comment xml:lang="tr">Ortak bir amac dogrultusunda birlikte calisan etmenlerin mantiksal organizasyonu (orn. arastirma takimi, kod inceleme takimi).</rdfs:comment>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMember"/>
+                <owl:allValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#AgentMessage -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentMessage">
+        <rdfs:label xml:lang="en">Agent Message</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir etmen tarafindan uretilmis Message alt tipi.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#generatedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMessageRole"/>
+                <owl:hasValue rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#UserMessage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#AgentTemplate -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentTemplate">
+        <rdfs:label xml:lang="en">Agent Template</rdfs:label>
+        <rdfs:comment xml:lang="tr">Somut bir etmen ornegi olusturmak icin kullanilan soyut yapilandirma sablonu; rol, model ve kabiliyet on-tanimlarini iceren prototip.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Capability -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability">
+        <rdfs:label xml:lang="en">Capability</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir etmenin sahip oldugu yetenek kumesinin soyut tanimi; oasis:Behaviour ile hizalanir.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.dmi.unict.it/oasis2#Behaviour"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Channel -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Channel">
+        <rdfs:label xml:lang="en">Channel</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenler veya etmen ile kullanici arasindaki iletisim kanalinin soyut tanimi.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#CompressionStrategy -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#CompressionStrategy">
+        <rdfs:label xml:lang="en">Compression Strategy</rdfs:label>
+        <rdfs:comment xml:lang="tr">Baglam penceresinin token butcesine sigmasini saglayan ozetleme/sikistirma stratejisi (MemoryStrategy alt tipi).</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryStrategy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Context -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Context">
+        <rdfs:label xml:lang="en">Context</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenin karar uretirken degerlendirdigi anlik baglam penceresi.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation">
+        <rdfs:label xml:lang="en">Delegation</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir etmenin gorevi baska bir etmene devretme iliskisi.</rdfs:comment>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#delegatesTo"/>
+                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#delegator"/>
+                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#EpisodicMemory -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#EpisodicMemory">
+        <rdfs:label xml:lang="en">Episodic Memory</rdfs:label>
+        <rdfs:comment xml:lang="tr">Gecmis etkilesimlere ait olaysal (zaman/yer baglamli) kayitlari saklayan hafiza turu.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#recordsSession"/>
+                <owl:allValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#EvictionStrategy -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#EvictionStrategy">
+        <rdfs:label xml:lang="en">Eviction Strategy</rdfs:label>
+        <rdfs:comment xml:lang="tr">Hafizadan oge cikarma (LRU, FIFO vb.) stratejisi (MemoryStrategy alt tipi).</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryStrategy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionContext -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionContext">
+        <rdfs:label xml:lang="en">Execution Context</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir gorevin calistirildigi ortam bilgisini ve durumunu kapsayan baglam nesnesi.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel">
+        <rdfs:label xml:lang="en">LLM Model</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenin cikti uretmek icin kullandigi buyuk dil modeli (orn. GPT-4o, Claude Sonnet).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#LongTermMemory -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#LongTermMemory">
+        <rdfs:label xml:lang="en">Long Term Memory</rdfs:label>
+        <rdfs:comment xml:lang="tr">Oturumlar arasinda kalici olarak saklanan uzun vadeli bilgi deposu.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Memory -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory">
+        <rdfs:label xml:lang="en">Memory</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenin gecmis etkilesimlere ve bilgiye erisimini saglayan genel hafiza altyapisi (tum hafiza turlerinin ust sinifi).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryStrategy -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryStrategy">
+        <rdfs:label xml:lang="en">Memory Strategy</rdfs:label>
+        <rdfs:comment xml:lang="tr">Hangi bilginin ne zaman saklanacagini, gomulecegini veya geri cagrilacagini belirleyen soyut strateji.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Message -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Message">
+        <rdfs:label xml:lang="en">Message</rdfs:label>
+        <rdfs:comment xml:lang="tr">Kullanicidan ya da etmenden gelen, role ve siraya sahip tekil iletisim birimi.</rdfs:comment>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMessageRole"/>
+                <owl:allValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MessageRole"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#MessageRole -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#MessageRole">
+        <rdfs:label xml:lang="en">Message Role</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir mesajin sistemdeki rolunu belirleyen oneOf-tanimli sayilabilir tip (User, Assistant, System, ToolRole).</rdfs:comment>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#System"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolRole"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#User"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration">
+        <rdfs:label xml:lang="en">Model Configuration</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir etmen icin kullanilacak LLM modeli ile parametrelerini (temperature, top_p, vb.) bir arada tanimlayan yapilandirma nesnesi.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Observation -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation">
+        <rdfs:label xml:lang="en">Observation</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir oturum sirasinda uretilen token kullanimi, gecikme ve hata gibi sistem duzeyindeki olcum kayitlari.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter">
+        <rdfs:label xml:lang="en">Parameter</rdfs:label>
+        <rdfs:comment xml:lang="tr">Modelin sicaklik ve maksimum token gibi calisma zamani ayarlarini tanimlayan deger.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Plan -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan">
+        <rdfs:label xml:lang="en">Plan</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir gorevi tamamlamak icin belirlenen sirali adimlar dizisi.</rdfs:comment>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasStep"/>
+                <owl:allValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Policy -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Policy">
+        <rdfs:label xml:lang="en">Policy</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenin karar ve davranislarini kisitlayan veya yonlendiren kurallar butunu.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Prompt -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Prompt">
+        <rdfs:label xml:lang="en">Prompt</rdfs:label>
+        <rdfs:comment xml:lang="tr">Modele gonderilen ve davranisi yonlendiren girdi metni (System ve User alt tipleri vardir).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Protocol -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Protocol">
+        <rdfs:label xml:lang="en">Protocol</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenler arasi mesaj alisverisini duzenleyen iletisim kurallari butunu (orn. MCP, FIPA-ACL, JSON-RPC).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Resource -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Resource">
+        <rdfs:label xml:lang="en">Resource</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenin erisebildigi dosya, veritabani veya harici servis gibi veri kaynaklari.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#RetrievalStrategy -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#RetrievalStrategy">
+        <rdfs:label xml:lang="en">Retrieval Strategy</rdfs:label>
+        <rdfs:comment xml:lang="tr">Hafizadan ilgili icerigi geri cagirma (vector-similarity, keyword vb.) stratejisi (MemoryStrategy alt tipi).</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryStrategy"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Role -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Role">
+        <rdfs:label xml:lang="en">Role</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir etmenin sistem icindeki islevsel konumunu ve sorumlulugunu belirleyen tanim (orn. Planner, Reviewer, Worker).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#SemanticMemory -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#SemanticMemory">
+        <rdfs:label xml:lang="en">Semantic Memory</rdfs:label>
+        <rdfs:comment xml:lang="tr">Alan bilgisi ve olgusal bilgiyi (genellikle vektor temsiliyle) temsil eden yapilandirilmis bilgi tabani.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMemoryStrategy"/>
+                <owl:allValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#RetrievalStrategy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Session -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Session">
+        <rdfs:label xml:lang="en">Session</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir kullanici ile etmen veya etmenler arasindaki belirli bir etkilesim surecini kapsayan baglam birimi.</rdfs:comment>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMessage"/>
+                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#sessionOf"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+                            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#ShortTermMemory -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ShortTermMemory">
+        <rdfs:label xml:lang="en">Short Term Memory</rdfs:label>
+        <rdfs:comment xml:lang="tr">Aktif oturum suresince gecerli olan kisa vadeli baglam hafizasi.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMemoryStrategy"/>
+                <owl:allValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#EvictionStrategy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#storesMessage"/>
+                <owl:allValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Subtask -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Subtask">
+        <rdfs:label xml:lang="en">Subtask</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Task'in daha kucuk ve bagimsiz olarak yurutulebilir alt parcasi.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#subtaskOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#SystemPrompt -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#SystemPrompt">
+        <rdfs:label xml:lang="en">System Prompt</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenin genel davranisini, rolunu ve kisitlamalarini tanimlayan sabit yonerge.</rdfs:comment>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Prompt"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#forRole"/>
+                        <owl:hasValue rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#System"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Prompt"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Task -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Task">
+        <rdfs:label xml:lang="en">Task</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenin tamamlamasi beklenen, tanimli giris ve cikisa sahip is birimi.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.dmi.unict.it/oasis2#TaskDescription"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Tool -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool">
+        <rdfs:label xml:lang="en">Tool</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmen tarafindan cagrilabilen, tanimli bir isi yerine getiren dissal fonksiyon veya sistem bileseni.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall">
+        <rdfs:label xml:lang="en">Tool Call</rdfs:label>
+        <rdfs:comment xml:lang="tr">Etmenin bir araci belirli parametrelerle cagirma eylemi; argumanlari ve zaman damgasini kaydeder.</rdfs:comment>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#invokesTool"/>
+                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult">
+        <rdfs:label xml:lang="en">Tool Result</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir arac cagrisinin urettigi cikti ya da hata durumu.</rdfs:comment>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#resultOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#UserMessage -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#UserMessage">
+        <rdfs:label xml:lang="en">User Message</rdfs:label>
+        <rdfs:comment xml:lang="tr">Kullanici (veya cagiran sistem) tarafindan uretilmis Message alt tipi.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMessageRole"/>
+                <owl:hasValue rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#User"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#UserPrompt -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#UserPrompt">
+        <rdfs:label xml:lang="en">User Prompt</rdfs:label>
+        <rdfs:comment xml:lang="tr">Kullanici ya da cagiran sistem tarafindan saglanan, etmene yonlendirilen anlik talep veya soru.</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Prompt"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow">
+        <rdfs:label xml:lang="en">Workflow</rdfs:label>
+        <rdfs:comment xml:lang="tr">Birden fazla etmen veya aracin koordineli bicimde yuruttugu surec akisi.</rdfs:comment>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasPlan"/>
+                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MessageRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#FIFO -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#FIFO">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#EvictionStrategy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#FIPA_ACL -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#FIPA_ACL">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Protocol"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#JSON_RPC -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#JSON_RPC">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Protocol"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#LRU -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#LRU">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#EvictionStrategy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#MCP -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#MCP">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Protocol"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#MaxTokensParam -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#MaxTokensParam">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+        <paramName rdf:datatype="xsd:string">max_tokens</paramName>
+        <paramType rdf:datatype="xsd:string">integer</paramType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Orchestrator -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Orchestrator">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Role"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#RAG -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#RAG">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#RetrievalStrategy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Reviewer -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Reviewer">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Role"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Summarization -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Summarization">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CompressionStrategy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#System -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#System">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MessageRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#TemperatureParam -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#TemperatureParam">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+        <paramName rdf:datatype="xsd:string">temperature</paramName>
+        <paramType rdf:datatype="xsd:string">float</paramType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#ToolRole -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolRole">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MessageRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#TopPParam -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#TopPParam">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+        <paramName rdf:datatype="xsd:string">top_p</paramName>
+        <paramType rdf:datatype="xsd:string">float</paramType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#User -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#User">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MessageRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ege.edu.tr/cs/ontology/llm-agent#Worker -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Worker">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Role"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#CompressionStrategy"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#EvictionStrategy"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#RetrievalStrategy"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#EpisodicMemory"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#LongTermMemory"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#SemanticMemory"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ShortTermMemory"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#System"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolRole"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#User"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#MaxTokensParam"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#TemperatureParam"/>
+            <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#TopPParam"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+
+
+    <!-- ============================================================ -->
+    <!-- FAZ 4: TANIMLI SINIFLAR (IntersectionOf, UnionOf, OneOf)    -->
+    <!-- ============================================================ -->
+
+
+    <!-- AutonomousAgent: Hafizasi olan ve aktif tool call yapan agent -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#AutonomousAgent">
+        <rdfs:label xml:lang="en">Autonomous Agent</rdfs:label>
+        <rdfs:comment xml:lang="tr">Hem hafizaya hem de arac cagirma yetenegine sahip etmenleri kapsayan equivalentClass tanimli sinif.</rdfs:comment>
+        <rdfs:label>AutonomousAgent</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMemory"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Memory"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#makesToolCall"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+
+    <!-- MemoryAugmentedAgent: Uzun sureli hafizaya sahip agent -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryAugmentedAgent">
+        <rdfs:label xml:lang="en">Memory Augmented Agent</rdfs:label>
+        <rdfs:comment xml:lang="tr">Uzun vadeli hafizaya sahip etmenleri kapsayan equivalentClass tanimli sinif.</rdfs:comment>
+        <rdfs:label>MemoryAugmentedAgent</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#hasMemory"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LongTermMemory"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+
+    <!-- PlanningAgent: Plan ureten ama tool call yapmayan agent -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#PlanningAgent">
+        <rdfs:label xml:lang="en">Planning Agent</rdfs:label>
+        <rdfs:comment xml:lang="tr">Plan ureten ancak dogrudan arac cagrisi yapmayan etmenleri kapsayan equivalentClass tanimli sinif.</rdfs:comment>
+        <rdfs:label>PlanningAgent</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#createsPlan"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan"/>
+                    </owl:Restriction>
+                    <owl:Class>
+                        <owl:complementOf>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#makesToolCall"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+                            </owl:Restriction>
+                        </owl:complementOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+
+    <!-- ExecutableEntity: Calistirilebilen varliklar (Task veya Workflow) -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutableEntity">
+        <rdfs:label xml:lang="en">Executable Entity</rdfs:label>
+        <rdfs:comment xml:lang="tr">Yurutulebilir varliklarin birlesik ust tipi (Task ile Workflow'un unionu).</rdfs:comment>
+        <rdfs:label>ExecutableEntity</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+
+    <!-- MemoryContent: Hafizada saklanabilecek varliklar (Message veya Session) -->
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryContent">
+        <rdfs:label xml:lang="en">Memory Content</rdfs:label>
+        <rdfs:comment xml:lang="tr">Hafizada saklanabilir icerigin birlesik ust tipi (Message ile Session'in unionu); hafiza katmaninin ortak range'i olarak kullanilir.</rdfs:comment>
+        <rdfs:label>MemoryContent</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Message"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+
+    <!-- ExecutionMode: Calistirma modu (kapali liste) -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Sync"/>
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Async"/>
+
+    <owl:Class rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionMode">
+        <rdfs:label xml:lang="en">Execution Mode</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Task'in calismasini niteleyen oneOf-tanimli sayilabilir tip (Sync, Async).</rdfs:comment>
+        <rdfs:label>ExecutionMode</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Sync"/>
+                    <rdf:Description rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Async"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+
+
+    <!-- ============================================================ -->
+    <!-- FAZ 4: SOMUT BIREYLER - Cok-etmenli Arastirma Sistemi       -->
+    <!-- ============================================================ -->
+
+    <!-- Yeni Object Property: createsPlan (Agent -> Plan) -->
+    <owl:ObjectProperty rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#createsPlan">
+        <rdfs:label xml:lang="en">creates plan</rdfs:label>
+        <rdfs:comment xml:lang="tr">Bir Agent'in urettigi Plan'i baglayan iliski; PlanningAgent tanimi icin kullanilir.</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <rdfs:range rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan"/>
+    </owl:ObjectProperty>
+
+    <!-- LLM MODELLER -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#GPT4o">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel"/>
+        <llm-agent:modelName rdf:datatype="xsd:string">gpt-4o</llm-agent:modelName>
+        <llm-agent:modelProvider rdf:datatype="xsd:string">OpenAI</llm-agent:modelProvider>
+        <llm-agent:modelVersion rdf:datatype="xsd:string">2024-11</llm-agent:modelVersion>
+        <llm-agent:contextLength rdf:datatype="xsd:integer">128000</llm-agent:contextLength>
+        <llm-agent:supportsFunctionCalling rdf:datatype="xsd:boolean">true</llm-agent:supportsFunctionCalling>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ClaudeSonnet">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel"/>
+        <llm-agent:modelName rdf:datatype="xsd:string">claude-sonnet-4-6</llm-agent:modelName>
+        <llm-agent:modelProvider rdf:datatype="xsd:string">Anthropic</llm-agent:modelProvider>
+        <llm-agent:modelVersion rdf:datatype="xsd:string">4.6</llm-agent:modelVersion>
+        <llm-agent:contextLength rdf:datatype="xsd:integer">200000</llm-agent:contextLength>
+        <llm-agent:supportsFunctionCalling rdf:datatype="xsd:boolean">true</llm-agent:supportsFunctionCalling>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#Llama3">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LLMModel"/>
+        <llm-agent:modelName rdf:datatype="xsd:string">llama-3.1-70b</llm-agent:modelName>
+        <llm-agent:modelProvider rdf:datatype="xsd:string">Meta</llm-agent:modelProvider>
+        <llm-agent:modelVersion rdf:datatype="xsd:string">3.1</llm-agent:modelVersion>
+        <llm-agent:contextLength rdf:datatype="xsd:integer">128000</llm-agent:contextLength>
+        <llm-agent:supportsFunctionCalling rdf:datatype="xsd:boolean">false</llm-agent:supportsFunctionCalling>
+    </owl:NamedIndividual>
+
+    <!-- PARAMETRELER -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerTempParam">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+        <llm-agent:paramName rdf:datatype="xsd:string">temperature</llm-agent:paramName>
+        <llm-agent:paramValue rdf:datatype="xsd:string">0.3</llm-agent:paramValue>
+        <llm-agent:paramType rdf:datatype="xsd:string">float</llm-agent:paramType>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorTempParam">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+        <llm-agent:paramName rdf:datatype="xsd:string">temperature</llm-agent:paramName>
+        <llm-agent:paramValue rdf:datatype="xsd:string">0.7</llm-agent:paramValue>
+        <llm-agent:paramType rdf:datatype="xsd:string">float</llm-agent:paramType>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerMaxTokens">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Parameter"/>
+        <llm-agent:paramName rdf:datatype="xsd:string">max_tokens</llm-agent:paramName>
+        <llm-agent:paramValue rdf:datatype="xsd:string">4096</llm-agent:paramValue>
+        <llm-agent:paramType rdf:datatype="xsd:string">integer</llm-agent:paramType>
+    </owl:NamedIndividual>
+
+    <!-- PROMPTLAR -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorSystemPrompt">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SystemPrompt"/>
+        <llm-agent:promptText rdf:datatype="xsd:string">You are an orchestrator agent. Coordinate the research team and delegate tasks appropriately.</llm-agent:promptText>
+        <llm-agent:forRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#System"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerSystemPrompt">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SystemPrompt"/>
+        <llm-agent:promptText rdf:datatype="xsd:string">You are a research planning agent. Analyze tasks and create structured research plans without executing them directly.</llm-agent:promptText>
+        <llm-agent:forRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#System"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorSystemPrompt">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SystemPrompt"/>
+        <llm-agent:promptText rdf:datatype="xsd:string">You are a code execution agent. Execute tasks using available tools and report results.</llm-agent:promptText>
+        <llm-agent:forRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#System"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerSystemPrompt">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SystemPrompt"/>
+        <llm-agent:promptText rdf:datatype="xsd:string">You are a reviewer agent. Evaluate outputs and provide structured feedback.</llm-agent:promptText>
+        <llm-agent:forRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#System"/>
+    </owl:NamedIndividual>
+
+    <!-- MODEL KONFIGURASYONLARI -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorConfig">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+        <llm-agent:usesModel rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#GPT4o"/>
+        <llm-agent:hasParameter rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerTempParam"/>
+        <llm-agent:hasPrompt rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorSystemPrompt"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerConfig">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+        <llm-agent:usesModel rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#GPT4o"/>
+        <llm-agent:hasParameter rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerTempParam"/>
+        <llm-agent:hasParameter rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerMaxTokens"/>
+        <llm-agent:hasPrompt rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerSystemPrompt"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorConfig">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+        <llm-agent:usesModel rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ClaudeSonnet"/>
+        <llm-agent:hasParameter rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorTempParam"/>
+        <llm-agent:hasPrompt rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorSystemPrompt"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerConfig">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ModelConfiguration"/>
+        <llm-agent:usesModel rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Llama3"/>
+        <llm-agent:hasPrompt rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerSystemPrompt"/>
+    </owl:NamedIndividual>
+
+    <!-- KAYNAKLAR -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#WebResource">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Resource"/>
+        <llm-agent:resourceType rdf:datatype="xsd:string">web</llm-agent:resourceType>
+        <llm-agent:accessMode rdf:datatype="xsd:string">read</llm-agent:accessMode>
+        <llm-agent:resourceURI rdf:datatype="xsd:anyURI">https://www.example.com</llm-agent:resourceURI>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeResource">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Resource"/>
+        <llm-agent:resourceType rdf:datatype="xsd:string">code_sandbox</llm-agent:resourceType>
+        <llm-agent:accessMode rdf:datatype="xsd:string">read_write</llm-agent:accessMode>
+        <llm-agent:resourceURI rdf:datatype="xsd:anyURI">sandbox://code</llm-agent:resourceURI>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#FileResource">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Resource"/>
+        <llm-agent:resourceType rdf:datatype="xsd:string">filesystem</llm-agent:resourceType>
+        <llm-agent:accessMode rdf:datatype="xsd:string">read</llm-agent:accessMode>
+        <llm-agent:resourceURI rdf:datatype="xsd:anyURI">file:///data</llm-agent:resourceURI>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#DBResource">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Resource"/>
+        <llm-agent:resourceType rdf:datatype="xsd:string">database</llm-agent:resourceType>
+        <llm-agent:accessMode rdf:datatype="xsd:string">read</llm-agent:accessMode>
+        <llm-agent:resourceURI rdf:datatype="xsd:anyURI">postgresql://db.example.com/research</llm-agent:resourceURI>
+    </owl:NamedIndividual>
+
+    <!-- ARACLAR -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#WebSearchTool">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <llm-agent:toolName rdf:datatype="xsd:string">web_search</llm-agent:toolName>
+        <llm-agent:toolVersion rdf:datatype="xsd:string">1.0</llm-agent:toolVersion>
+        <llm-agent:isAsync rdf:datatype="xsd:boolean">false</llm-agent:isAsync>
+        <llm-agent:toolEndpoint rdf:datatype="xsd:anyURI">https://api.search.example.com/v1</llm-agent:toolEndpoint>
+        <llm-agent:accessesResource rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#WebResource"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeInterpreterTool">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <llm-agent:toolName rdf:datatype="xsd:string">code_interpreter</llm-agent:toolName>
+        <llm-agent:toolVersion rdf:datatype="xsd:string">2.0</llm-agent:toolVersion>
+        <llm-agent:isAsync rdf:datatype="xsd:boolean">true</llm-agent:isAsync>
+        <llm-agent:toolEndpoint rdf:datatype="xsd:anyURI">sandbox://interpreter</llm-agent:toolEndpoint>
+        <llm-agent:accessesResource rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeResource"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#FileReaderTool">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <llm-agent:toolName rdf:datatype="xsd:string">file_reader</llm-agent:toolName>
+        <llm-agent:toolVersion rdf:datatype="xsd:string">1.0</llm-agent:toolVersion>
+        <llm-agent:isAsync rdf:datatype="xsd:boolean">false</llm-agent:isAsync>
+        <llm-agent:toolEndpoint rdf:datatype="xsd:anyURI">file:///tools/reader</llm-agent:toolEndpoint>
+        <llm-agent:accessesResource rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#FileResource"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#DatabaseQueryTool">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Tool"/>
+        <llm-agent:toolName rdf:datatype="xsd:string">db_query</llm-agent:toolName>
+        <llm-agent:toolVersion rdf:datatype="xsd:string">1.0</llm-agent:toolVersion>
+        <llm-agent:isAsync rdf:datatype="xsd:boolean">false</llm-agent:isAsync>
+        <llm-agent:toolEndpoint rdf:datatype="xsd:anyURI">postgresql://db.example.com/research</llm-agent:toolEndpoint>
+        <llm-agent:accessesResource rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#DBResource"/>
+    </owl:NamedIndividual>
+
+    <!-- YETENEKLER -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#SearchCapability">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+        <llm-agent:capabilityName rdf:datatype="xsd:string">web_search</llm-agent:capabilityName>
+        <llm-agent:usesTool rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#WebSearchTool"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeCapability">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+        <llm-agent:capabilityName rdf:datatype="xsd:string">code_execution</llm-agent:capabilityName>
+        <llm-agent:usesTool rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeInterpreterTool"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#FileCapability">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+        <llm-agent:capabilityName rdf:datatype="xsd:string">file_reading</llm-agent:capabilityName>
+        <llm-agent:usesTool rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#FileReaderTool"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#QueryCapability">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Capability"/>
+        <llm-agent:capabilityName rdf:datatype="xsd:string">db_query</llm-agent:capabilityName>
+        <llm-agent:usesTool rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#DatabaseQueryTool"/>
+    </owl:NamedIndividual>
+
+    <!-- HAFIZA -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerShortMem">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ShortTermMemory"/>
+        <llm-agent:memoryCapacity rdf:datatype="xsd:integer">20</llm-agent:memoryCapacity>
+        <llm-agent:ttlSeconds rdf:datatype="xsd:integer">3600</llm-agent:ttlSeconds>
+        <llm-agent:hasMemoryStrategy rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LRU"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorLongMem">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LongTermMemory"/>
+        <llm-agent:memoryCapacity rdf:datatype="xsd:integer">10000</llm-agent:memoryCapacity>
+        <llm-agent:persistenceBackend rdf:datatype="xsd:string">vector_db</llm-agent:persistenceBackend>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorEpisodicMem">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#EpisodicMemory"/>
+        <llm-agent:memoryCapacity rdf:datatype="xsd:integer">500</llm-agent:memoryCapacity>
+        <llm-agent:maxEpisodes rdf:datatype="xsd:integer">100</llm-agent:maxEpisodes>
+        <llm-agent:hasMemoryStrategy rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#RAG"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorSemanticMem">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SemanticMemory"/>
+        <llm-agent:memoryCapacity rdf:datatype="xsd:integer">50000</llm-agent:memoryCapacity>
+        <llm-agent:vectorDimension rdf:datatype="xsd:integer">1536</llm-agent:vectorDimension>
+        <llm-agent:embeddingModel rdf:datatype="xsd:string">text-embedding-ada-002</llm-agent:embeddingModel>
+        <llm-agent:hasMemoryStrategy rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#RAG"/>
+    </owl:NamedIndividual>
+
+    <!-- TOOL CALL + RESULT (CodeExecutorAgent icin) -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeAnalysisResult">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult"/>
+        <llm-agent:resultStatus rdf:datatype="xsd:string">success</llm-agent:resultStatus>
+        <llm-agent:resultPayload rdf:datatype="xsd:string">Found 3 relevant modules, 142 LOC analyzed.</llm-agent:resultPayload>
+        <llm-agent:executionTimeMs rdf:datatype="xsd:integer">1240</llm-agent:executionTimeMs>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeAnalysisToolCall">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+        <llm-agent:callId rdf:datatype="xsd:string">tc-001</llm-agent:callId>
+        <llm-agent:inputJson rdf:datatype="xsd:string">{"target": "src/", "language": "python"}</llm-agent:inputJson>
+        <llm-agent:invokesTool rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeInterpreterTool"/>
+        <llm-agent:producesResult rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeAnalysisResult"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#WebSearchResult">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolResult"/>
+        <llm-agent:resultStatus rdf:datatype="xsd:string">success</llm-agent:resultStatus>
+        <llm-agent:resultPayload rdf:datatype="xsd:string">Retrieved 5 relevant papers on LLM agent architectures.</llm-agent:resultPayload>
+        <llm-agent:executionTimeMs rdf:datatype="xsd:integer">320</llm-agent:executionTimeMs>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#WebSearchToolCall">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ToolCall"/>
+        <llm-agent:callId rdf:datatype="xsd:string">tc-002</llm-agent:callId>
+        <llm-agent:inputJson rdf:datatype="xsd:string">{"query": "LLM agent ontology survey 2024"}</llm-agent:inputJson>
+        <llm-agent:invokesTool rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#WebSearchTool"/>
+        <llm-agent:producesResult rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#WebSearchResult"/>
+    </owl:NamedIndividual>
+
+    <!-- GOREVLER -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#LiteratureReviewTask">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+        <llm-agent:taskName rdf:datatype="xsd:string">Literature Review</llm-agent:taskName>
+        <llm-agent:taskStatus rdf:datatype="xsd:string">completed</llm-agent:taskStatus>
+        <llm-agent:taskPriority rdf:datatype="xsd:integer">1</llm-agent:taskPriority>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeAnalysisTask">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+        <llm-agent:taskName rdf:datatype="xsd:string">Code Analysis</llm-agent:taskName>
+        <llm-agent:taskStatus rdf:datatype="xsd:string">in_progress</llm-agent:taskStatus>
+        <llm-agent:taskPriority rdf:datatype="xsd:integer">2</llm-agent:taskPriority>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#DataExtractionTask">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Subtask"/>
+        <llm-agent:taskName rdf:datatype="xsd:string">Data Extraction</llm-agent:taskName>
+        <llm-agent:taskStatus rdf:datatype="xsd:string">completed</llm-agent:taskStatus>
+        <llm-agent:taskPriority rdf:datatype="xsd:integer">1</llm-agent:taskPriority>
+        <llm-agent:stepOrder rdf:datatype="xsd:integer">1</llm-agent:stepOrder>
+        <llm-agent:subtaskOf rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LiteratureReviewTask"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#SummaryTask">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Task"/>
+        <llm-agent:taskName rdf:datatype="xsd:string">Summary Generation</llm-agent:taskName>
+        <llm-agent:taskStatus rdf:datatype="xsd:string">pending</llm-agent:taskStatus>
+        <llm-agent:taskPriority rdf:datatype="xsd:integer">3</llm-agent:taskPriority>
+    </owl:NamedIndividual>
+
+    <!-- PLANLAR -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlan">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan"/>
+        <llm-agent:planName rdf:datatype="xsd:string">Research Plan v1</llm-agent:planName>
+        <llm-agent:planVersion rdf:datatype="xsd:string">1.0</llm-agent:planVersion>
+        <llm-agent:hasStep rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#LiteratureReviewTask"/>
+        <llm-agent:hasStep rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeAnalysisTask"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionPlan">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Plan"/>
+        <llm-agent:planName rdf:datatype="xsd:string">Execution Plan v1</llm-agent:planName>
+        <llm-agent:planVersion rdf:datatype="xsd:string">1.0</llm-agent:planVersion>
+        <llm-agent:hasStep rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#DataExtractionTask"/>
+        <llm-agent:hasStep rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SummaryTask"/>
+    </owl:NamedIndividual>
+
+    <!-- MESAJLAR -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#UserQuery">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#UserMessage"/>
+        <llm-agent:messageId rdf:datatype="xsd:string">msg-001</llm-agent:messageId>
+        <llm-agent:messageContent rdf:datatype="xsd:string">Analyze the codebase and generate a research report.</llm-agent:messageContent>
+        <llm-agent:hasMessageRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#User"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerResponse">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentMessage"/>
+        <llm-agent:messageId rdf:datatype="xsd:string">msg-002</llm-agent:messageId>
+        <llm-agent:messageContent rdf:datatype="xsd:string">Research plan created with literature review and code analysis tasks.</llm-agent:messageContent>
+        <llm-agent:hasMessageRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant"/>
+        <llm-agent:generatedBy rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlannerAgent"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorStatus">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentMessage"/>
+        <llm-agent:messageId rdf:datatype="xsd:string">msg-003</llm-agent:messageId>
+        <llm-agent:messageContent rdf:datatype="xsd:string">Code analysis in progress. Found 3 relevant modules.</llm-agent:messageContent>
+        <llm-agent:hasMessageRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant"/>
+        <llm-agent:generatedBy rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerFeedback">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentMessage"/>
+        <llm-agent:messageId rdf:datatype="xsd:string">msg-004</llm-agent:messageId>
+        <llm-agent:messageContent rdf:datatype="xsd:string">Analysis complete. Summary approved with minor revisions.</llm-agent:messageContent>
+        <llm-agent:hasMessageRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant"/>
+        <llm-agent:generatedBy rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerAgent"/>
+    </owl:NamedIndividual>
+
+    <!-- GOZLEMLER -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchObs">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation"/>
+        <llm-agent:tokenCount rdf:datatype="xsd:integer">1500</llm-agent:tokenCount>
+        <llm-agent:latencyMs rdf:datatype="xsd:integer">250</llm-agent:latencyMs>
+        <llm-agent:cost rdf:datatype="xsd:decimal">0.05</llm-agent:cost>
+        <llm-agent:errorCount rdf:datatype="xsd:integer">0</llm-agent:errorCount>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionObs">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Observation"/>
+        <llm-agent:tokenCount rdf:datatype="xsd:integer">3200</llm-agent:tokenCount>
+        <llm-agent:latencyMs rdf:datatype="xsd:integer">1800</llm-agent:latencyMs>
+        <llm-agent:cost rdf:datatype="xsd:decimal">0.12</llm-agent:cost>
+        <llm-agent:errorCount rdf:datatype="xsd:integer">0</llm-agent:errorCount>
+    </owl:NamedIndividual>
+
+    <!-- SESSIONLAR -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchSession">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+        <llm-agent:sessionId rdf:datatype="xsd:string">sess-001</llm-agent:sessionId>
+        <llm-agent:sessionStatus rdf:datatype="xsd:string">active</llm-agent:sessionStatus>
+        <llm-agent:hasMessage rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#UserQuery"/>
+        <llm-agent:hasMessage rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerResponse"/>
+        <llm-agent:hasObservation rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchObs"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionSession">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Session"/>
+        <llm-agent:sessionId rdf:datatype="xsd:string">sess-002</llm-agent:sessionId>
+        <llm-agent:sessionStatus rdf:datatype="xsd:string">completed</llm-agent:sessionStatus>
+        <llm-agent:hasMessage rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorStatus"/>
+        <llm-agent:hasMessage rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerFeedback"/>
+        <llm-agent:hasObservation rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionObs"/>
+    </owl:NamedIndividual>
+
+    <!-- KANAL & IS AKISI -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#APIChannel">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Channel"/>
+        <llm-agent:channelType rdf:datatype="xsd:string">REST</llm-agent:channelType>
+        <llm-agent:channelEndpoint rdf:datatype="xsd:anyURI">https://api.agents.example.com/v1</llm-agent:channelEndpoint>
+        <llm-agent:followsProtocol rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#JSON_RPC"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchWorkflow">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Workflow"/>
+        <llm-agent:workflowName rdf:datatype="xsd:string">Research Workflow</llm-agent:workflowName>
+        <llm-agent:workflowStatus rdf:datatype="xsd:string">active</llm-agent:workflowStatus>
+        <llm-agent:hasPlan rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlan"/>
+        <llm-agent:hasPlan rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionPlan"/>
+        <llm-agent:viaChannel rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#APIChannel"/>
+        <llm-agent:followsProtocol rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MCP"/>
+    </owl:NamedIndividual>
+
+    <!-- DELEGASYONLAR -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerToExecutorDelegation">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+        <llm-agent:delegator rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlannerAgent"/>
+        <llm-agent:delegatesTo rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent"/>
+        <llm-agent:delegatedTask rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeAnalysisTask"/>
+        <llm-agent:delegationReason rdf:datatype="xsd:string">Code analysis requires execution capabilities</llm-agent:delegationReason>
+        <llm-agent:followsProtocol rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#MCP"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorToReviewerDelegation">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Delegation"/>
+        <llm-agent:delegator rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorAgent"/>
+        <llm-agent:delegatesTo rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerAgent"/>
+        <llm-agent:delegatedTask rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SummaryTask"/>
+        <llm-agent:delegationReason rdf:datatype="xsd:string">Summary requires independent review</llm-agent:delegationReason>
+        <llm-agent:followsProtocol rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#FIPA_ACL"/>
+    </owl:NamedIndividual>
+
+    <!-- AGENTLAR -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorAgent">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <llm-agent:agentId rdf:datatype="xsd:string">agent-001</llm-agent:agentId>
+        <llm-agent:agentName rdf:datatype="xsd:string">OrchestratorAgent</llm-agent:agentName>
+        <llm-agent:agentVersion rdf:datatype="xsd:string">1.0</llm-agent:agentVersion>
+        <llm-agent:isActive rdf:datatype="xsd:boolean">true</llm-agent:isActive>
+        <llm-agent:hasConfiguration rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorConfig"/>
+        <llm-agent:hasRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Orchestrator"/>
+        <llm-agent:hasCapability rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SearchCapability"/>
+        <llm-agent:hasSession rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchSession"/>
+    </owl:NamedIndividual>
+
+    <!-- ResearchPlannerAgent: PlanningAgent olarak cikarilabilir (createsPlan + NOT makesToolCall) -->
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlannerAgent">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <llm-agent:agentId rdf:datatype="xsd:string">agent-002</llm-agent:agentId>
+        <llm-agent:agentName rdf:datatype="xsd:string">ResearchPlannerAgent</llm-agent:agentName>
+        <llm-agent:agentVersion rdf:datatype="xsd:string">1.0</llm-agent:agentVersion>
+        <llm-agent:isActive rdf:datatype="xsd:boolean">true</llm-agent:isActive>
+        <llm-agent:hasConfiguration rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerConfig"/>
+        <llm-agent:hasRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Worker"/>
+        <llm-agent:hasCapability rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#SearchCapability"/>
+        <llm-agent:hasMemory rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#PlannerShortMem"/>
+        <llm-agent:createsPlan rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlan"/>
+        <llm-agent:hasSession rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchSession"/>
+    </owl:NamedIndividual>
+
+    <!-- CodeExecutorAgent: AutonomousAgent olarak cikarilabilir (hasMemory + makesToolCall) -->
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <llm-agent:agentId rdf:datatype="xsd:string">agent-003</llm-agent:agentId>
+        <llm-agent:agentName rdf:datatype="xsd:string">CodeExecutorAgent</llm-agent:agentName>
+        <llm-agent:agentVersion rdf:datatype="xsd:string">1.0</llm-agent:agentVersion>
+        <llm-agent:isActive rdf:datatype="xsd:boolean">true</llm-agent:isActive>
+        <llm-agent:hasConfiguration rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorConfig"/>
+        <llm-agent:hasRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Worker"/>
+        <llm-agent:hasCapability rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeCapability"/>
+        <llm-agent:hasCapability rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#FileCapability"/>
+        <llm-agent:hasCapability rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#QueryCapability"/>
+        <llm-agent:hasMemory rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorLongMem"/>
+        <llm-agent:hasMemory rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorEpisodicMem"/>
+        <llm-agent:hasMemory rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorSemanticMem"/>
+        <llm-agent:makesToolCall rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeAnalysisToolCall"/>
+        <llm-agent:makesToolCall rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#WebSearchToolCall"/>
+        <llm-agent:hasSession rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionSession"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerAgent">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Agent"/>
+        <llm-agent:agentId rdf:datatype="xsd:string">agent-004</llm-agent:agentId>
+        <llm-agent:agentName rdf:datatype="xsd:string">ReviewerAgent</llm-agent:agentName>
+        <llm-agent:agentVersion rdf:datatype="xsd:string">1.0</llm-agent:agentVersion>
+        <llm-agent:isActive rdf:datatype="xsd:boolean">true</llm-agent:isActive>
+        <llm-agent:hasConfiguration rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerConfig"/>
+        <llm-agent:hasRole rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#Reviewer"/>
+        <llm-agent:hasCapability rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#FileCapability"/>
+        <llm-agent:hasSession rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionSession"/>
+    </owl:NamedIndividual>
+
+    <!-- AGENT GRUBU -->
+
+    <owl:NamedIndividual rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchTeam">
+        <rdf:type rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#AgentGroup"/>
+        <llm-agent:groupName rdf:datatype="xsd:string">Research Team</llm-agent:groupName>
+        <llm-agent:hasMember rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorAgent"/>
+        <llm-agent:hasMember rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlannerAgent"/>
+        <llm-agent:hasMember rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent"/>
+        <llm-agent:hasMember rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerAgent"/>
+        <llm-agent:coordinatesVia rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchWorkflow"/>
+        <llm-agent:hasSharedMemory rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutorLongMem"/>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29) https://github.com/owlcs/owlapi -->
+

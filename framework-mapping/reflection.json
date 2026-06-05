@@ -1,0 +1,663 @@
+{
+  "generated_at": "2026-05-29T19:22:43.029998+00:00",
+  "python": "3.12.12",
+  "frameworks": {
+    "LangChain": {
+      "framework": "LangChain",
+      "entries": [
+        {
+          "ontology_term": "Agent",
+          "resolved": "langgraph.prebuilt:create_react_agent",
+          "module": "builtins",
+          "qualname": "function",
+          "kind": "function",
+          "mro": [
+            "builtins.function"
+          ]
+        },
+        {
+          "ontology_term": "AgentGroup",
+          "resolved": "langgraph.graph:StateGraph",
+          "module": "langgraph.graph.state",
+          "qualname": "StateGraph",
+          "kind": "class",
+          "mro": [
+            "langgraph.graph.state.StateGraph",
+            "typing.Generic"
+          ]
+        },
+        {
+          "ontology_term": "Role",
+          "resolved": "langchain_core.messages:SystemMessage",
+          "module": "langchain_core.messages.system",
+          "qualname": "SystemMessage",
+          "kind": "class",
+          "mro": [
+            "langchain_core.messages.system.SystemMessage",
+            "langchain_core.messages.base.BaseMessage",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "LLMModel",
+          "resolved": "langchain_core.language_models.chat_models:BaseChatModel",
+          "module": "langchain_core.language_models.chat_models",
+          "qualname": "BaseChatModel",
+          "kind": "class",
+          "mro": [
+            "langchain_core.language_models.chat_models.BaseChatModel",
+            "langchain_core.language_models.base.BaseLanguageModel[AIMessage]",
+            "langchain_core.language_models.base.BaseLanguageModel",
+            "langchain_core.runnables.base.RunnableSerializable[Union[PromptValue, str, Sequence[Union[BaseMessage, list[str], tuple[str, str], str, dict[str, Any]]]], TypeVar]",
+            "langchain_core.runnables.base.RunnableSerializable",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "langchain_core.runnables.base.Runnable",
+            "abc.ABC",
+            "typing.Generic"
+          ]
+        },
+        {
+          "ontology_term": "ModelConfiguration",
+          "resolved": "langchain_core.runnables:RunnableConfig",
+          "module": "langchain_core.runnables.config",
+          "qualname": "RunnableConfig",
+          "kind": "class",
+          "mro": [
+            "langchain_core.runnables.config.RunnableConfig",
+            "builtins.dict"
+          ]
+        },
+        {
+          "ontology_term": "Session",
+          "resolved": "langgraph.checkpoint.base:Checkpoint",
+          "module": "langgraph.checkpoint.base",
+          "qualname": "Checkpoint",
+          "kind": "class",
+          "mro": [
+            "langgraph.checkpoint.base.Checkpoint",
+            "builtins.dict"
+          ]
+        },
+        {
+          "ontology_term": "Message",
+          "resolved": "langchain_core.messages:BaseMessage",
+          "module": "langchain_core.messages.base",
+          "qualname": "BaseMessage",
+          "kind": "class",
+          "mro": [
+            "langchain_core.messages.base.BaseMessage",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "MessageRole",
+          "resolved": "langchain_core.messages:AIMessage",
+          "module": "langchain_core.messages.ai",
+          "qualname": "AIMessage",
+          "kind": "class",
+          "mro": [
+            "langchain_core.messages.ai.AIMessage",
+            "langchain_core.messages.base.BaseMessage",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "Context",
+          "resolved": "langchain_core.runnables:RunnableConfig",
+          "module": "langchain_core.runnables.config",
+          "qualname": "RunnableConfig",
+          "kind": "class",
+          "mro": [
+            "langchain_core.runnables.config.RunnableConfig",
+            "builtins.dict"
+          ]
+        },
+        {
+          "ontology_term": "Tool",
+          "resolved": "langchain_core.tools:BaseTool",
+          "module": "langchain_core.tools.base",
+          "qualname": "BaseTool",
+          "kind": "class",
+          "mro": [
+            "langchain_core.tools.base.BaseTool",
+            "langchain_core.runnables.base.RunnableSerializable[Union[str, dict, ToolCall], Any]",
+            "langchain_core.runnables.base.RunnableSerializable",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "langchain_core.runnables.base.Runnable",
+            "abc.ABC",
+            "typing.Generic"
+          ]
+        },
+        {
+          "ontology_term": "ToolCall",
+          "resolved": "langchain_core.messages.tool:ToolCall",
+          "module": "langchain_core.messages.tool",
+          "qualname": "ToolCall",
+          "kind": "class",
+          "mro": [
+            "langchain_core.messages.tool.ToolCall",
+            "builtins.dict"
+          ]
+        },
+        {
+          "ontology_term": "ToolResult",
+          "resolved": "langchain_core.messages:ToolMessage",
+          "module": "langchain_core.messages.tool",
+          "qualname": "ToolMessage",
+          "kind": "class",
+          "mro": [
+            "langchain_core.messages.tool.ToolMessage",
+            "langchain_core.messages.base.BaseMessage",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "abc.ABC",
+            "langchain_core.messages.tool.ToolOutputMixin"
+          ]
+        },
+        {
+          "ontology_term": "Resource",
+          "resolved": "langchain_core.documents:Document",
+          "module": "langchain_core.documents.base",
+          "qualname": "Document",
+          "kind": "class",
+          "mro": [
+            "langchain_core.documents.base.Document",
+            "langchain_core.documents.base.BaseMedia",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "Action",
+          "resolved": "langchain_core.agents:AgentAction",
+          "module": "langchain_core.agents",
+          "qualname": "AgentAction",
+          "kind": "class",
+          "mro": [
+            "langchain_core.agents.AgentAction",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "Capability",
+          "resolved": "langchain_core.runnables:Runnable",
+          "module": "langchain_core.runnables.base",
+          "qualname": "Runnable",
+          "kind": "class",
+          "mro": [
+            "langchain_core.runnables.base.Runnable",
+            "abc.ABC",
+            "typing.Generic"
+          ]
+        },
+        {
+          "ontology_term": "Memory",
+          "resolved": "langgraph.store.base:BaseStore",
+          "module": "langgraph.store.base",
+          "qualname": "BaseStore",
+          "kind": "class",
+          "mro": [
+            "langgraph.store.base.BaseStore",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "ShortTermMemory",
+          "resolved": "langgraph.checkpoint.memory:InMemorySaver",
+          "module": "langgraph.checkpoint.memory",
+          "qualname": "InMemorySaver",
+          "kind": "class",
+          "mro": [
+            "langgraph.checkpoint.memory.InMemorySaver",
+            "langgraph.checkpoint.base.BaseCheckpointSaver",
+            "typing.Generic",
+            "contextlib.AbstractContextManager",
+            "contextlib.AbstractAsyncContextManager",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "LongTermMemory",
+          "resolved": "langgraph.store.base:BaseStore",
+          "module": "langgraph.store.base",
+          "qualname": "BaseStore",
+          "kind": "class",
+          "mro": [
+            "langgraph.store.base.BaseStore",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "SemanticMemory",
+          "resolved": "langchain_core.vectorstores:VectorStore",
+          "module": "langchain_core.vectorstores.base",
+          "qualname": "VectorStore",
+          "kind": "class",
+          "mro": [
+            "langchain_core.vectorstores.base.VectorStore",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "Prompt",
+          "resolved": "langchain_core.prompts:BasePromptTemplate",
+          "module": "langchain_core.prompts.base",
+          "qualname": "BasePromptTemplate",
+          "kind": "class",
+          "mro": [
+            "langchain_core.prompts.base.BasePromptTemplate",
+            "langchain_core.runnables.base.RunnableSerializable[dict, PromptValue]",
+            "langchain_core.runnables.base.RunnableSerializable",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "langchain_core.runnables.base.Runnable",
+            "abc.ABC",
+            "typing.Generic"
+          ]
+        },
+        {
+          "ontology_term": "SystemPrompt",
+          "resolved": "langchain_core.prompts:SystemMessagePromptTemplate",
+          "module": "langchain_core.prompts.chat",
+          "qualname": "SystemMessagePromptTemplate",
+          "kind": "class",
+          "mro": [
+            "langchain_core.prompts.chat.SystemMessagePromptTemplate",
+            "langchain_core.prompts.chat._StringImageMessagePromptTemplate",
+            "langchain_core.prompts.message.BaseMessagePromptTemplate",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "PromptTemplate",
+          "resolved": "langchain_core.prompts:ChatPromptTemplate",
+          "module": "langchain_core.prompts.chat",
+          "qualname": "ChatPromptTemplate",
+          "kind": "class",
+          "mro": [
+            "langchain_core.prompts.chat.ChatPromptTemplate",
+            "langchain_core.prompts.chat.BaseChatPromptTemplate",
+            "langchain_core.prompts.base.BasePromptTemplate",
+            "langchain_core.runnables.base.RunnableSerializable[dict, PromptValue]",
+            "langchain_core.runnables.base.RunnableSerializable",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "langchain_core.runnables.base.Runnable",
+            "abc.ABC",
+            "typing.Generic"
+          ]
+        },
+        {
+          "ontology_term": "Parameter",
+          "resolved": "langchain_core.runnables:RunnableConfig",
+          "module": "langchain_core.runnables.config",
+          "qualname": "RunnableConfig",
+          "kind": "class",
+          "mro": [
+            "langchain_core.runnables.config.RunnableConfig",
+            "builtins.dict"
+          ]
+        },
+        {
+          "ontology_term": "Task",
+          "resolved": "langchain_core.runnables:Runnable",
+          "module": "langchain_core.runnables.base",
+          "qualname": "Runnable",
+          "kind": "class",
+          "mro": [
+            "langchain_core.runnables.base.Runnable",
+            "abc.ABC",
+            "typing.Generic"
+          ]
+        },
+        {
+          "ontology_term": "Plan",
+          "resolved": "langchain_core.agents:AgentAction",
+          "module": "langchain_core.agents",
+          "qualname": "AgentAction",
+          "kind": "class",
+          "mro": [
+            "langchain_core.agents.AgentAction",
+            "langchain_core.load.serializable.Serializable",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "Workflow",
+          "resolved": "langgraph.graph:StateGraph",
+          "module": "langgraph.graph.state",
+          "qualname": "StateGraph",
+          "kind": "class",
+          "mro": [
+            "langgraph.graph.state.StateGraph",
+            "typing.Generic"
+          ]
+        },
+        {
+          "ontology_term": "Delegation",
+          "resolved": "langgraph.types:Command",
+          "module": "langgraph.types",
+          "qualname": "Command",
+          "kind": "class",
+          "mro": [
+            "langgraph.types.Command",
+            "typing.Generic",
+            "langchain_core.messages.tool.ToolOutputMixin"
+          ]
+        },
+        {
+          "ontology_term": "Channel",
+          "resolved": "langgraph.channels.base:BaseChannel",
+          "module": "langgraph.channels.base",
+          "qualname": "BaseChannel",
+          "kind": "class",
+          "mro": [
+            "langgraph.channels.base.BaseChannel",
+            "typing.Generic",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "ExecutionContext",
+          "resolved": "langchain_core.runnables:RunnableConfig",
+          "module": "langchain_core.runnables.config",
+          "qualname": "RunnableConfig",
+          "kind": "class",
+          "mro": [
+            "langchain_core.runnables.config.RunnableConfig",
+            "builtins.dict"
+          ]
+        }
+      ]
+    },
+    "CrewAI": {
+      "framework": "CrewAI",
+      "entries": [
+        {
+          "ontology_term": "Agent",
+          "resolved": "crewai:Agent",
+          "module": "crewai.agent.core",
+          "qualname": "Agent",
+          "kind": "class",
+          "mro": [
+            "crewai.agent.core.Agent",
+            "crewai.agents.agent_builder.base_agent.BaseAgent",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "AgentGroup",
+          "resolved": "crewai:Crew",
+          "module": "crewai.crew",
+          "qualname": "Crew",
+          "kind": "class",
+          "mro": [
+            "crewai.crew.Crew",
+            "crewai.flow.flow_trackable.FlowTrackable",
+            "pydantic.main.BaseModel"
+          ]
+        },
+        {
+          "ontology_term": "AgentTemplate",
+          "resolved": "crewai:Agent",
+          "module": "crewai.agent.core",
+          "qualname": "Agent",
+          "kind": "class",
+          "mro": [
+            "crewai.agent.core.Agent",
+            "crewai.agents.agent_builder.base_agent.BaseAgent",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "Role",
+          "resolved": "crewai:Agent",
+          "module": "crewai.agent.core",
+          "qualname": "Agent",
+          "kind": "class",
+          "mro": [
+            "crewai.agent.core.Agent",
+            "crewai.agents.agent_builder.base_agent.BaseAgent",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "LLMModel",
+          "resolved": "crewai:LLM",
+          "module": "crewai.llm",
+          "qualname": "LLM",
+          "kind": "class",
+          "mro": [
+            "crewai.llm.LLM",
+            "crewai.llms.base_llm.BaseLLM",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "ModelConfiguration",
+          "resolved": "crewai:LLM",
+          "module": "crewai.llm",
+          "qualname": "LLM",
+          "kind": "class",
+          "mro": [
+            "crewai.llm.LLM",
+            "crewai.llms.base_llm.BaseLLM",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "Session",
+          "resolved": null,
+          "tried": [
+            "crewai.memory.contextual.contextual_memory:ContextualMemory"
+          ],
+          "errors": [
+            "crewai.memory.contextual.contextual_memory:ContextualMemory -> ModuleNotFoundError: No module named 'crewai.memory.contextual'"
+          ]
+        },
+        {
+          "ontology_term": "Message",
+          "resolved": "crewai.tasks.task_output:TaskOutput",
+          "module": "crewai.tasks.task_output",
+          "qualname": "TaskOutput",
+          "kind": "class",
+          "mro": [
+            "crewai.tasks.task_output.TaskOutput",
+            "pydantic.main.BaseModel"
+          ]
+        },
+        {
+          "ontology_term": "Tool",
+          "resolved": "crewai.tools:BaseTool",
+          "module": "crewai.tools.base_tool",
+          "qualname": "BaseTool",
+          "kind": "class",
+          "mro": [
+            "crewai.tools.base_tool.BaseTool",
+            "pydantic.main.BaseModel",
+            "abc.ABC"
+          ]
+        },
+        {
+          "ontology_term": "ToolResult",
+          "resolved": "crewai.tools.tool_usage:ToolUsage",
+          "module": "crewai.tools.tool_usage",
+          "qualname": "ToolUsage",
+          "kind": "class",
+          "mro": [
+            "crewai.tools.tool_usage.ToolUsage"
+          ]
+        },
+        {
+          "ontology_term": "Resource",
+          "resolved": "crewai.knowledge.knowledge:Knowledge",
+          "module": "crewai.knowledge.knowledge",
+          "qualname": "Knowledge",
+          "kind": "class",
+          "mro": [
+            "crewai.knowledge.knowledge.Knowledge",
+            "pydantic.main.BaseModel"
+          ]
+        },
+        {
+          "ontology_term": "Memory",
+          "resolved": null,
+          "tried": [
+            "crewai.memory.memory:Memory"
+          ],
+          "errors": [
+            "crewai.memory.memory:Memory -> ModuleNotFoundError: No module named 'crewai.memory.memory'"
+          ]
+        },
+        {
+          "ontology_term": "ShortTermMemory",
+          "resolved": null,
+          "tried": [
+            "crewai.memory.short_term.short_term_memory:ShortTermMemory",
+            "crewai.memory:ShortTermMemory"
+          ],
+          "errors": [
+            "crewai.memory.short_term.short_term_memory:ShortTermMemory -> ModuleNotFoundError: No module named 'crewai.memory.short_term'",
+            "crewai.memory:ShortTermMemory -> AttributeError: crewai.memory icinde ShortTermMemory yok"
+          ]
+        },
+        {
+          "ontology_term": "LongTermMemory",
+          "resolved": null,
+          "tried": [
+            "crewai.memory.long_term.long_term_memory:LongTermMemory",
+            "crewai.memory:LongTermMemory"
+          ],
+          "errors": [
+            "crewai.memory.long_term.long_term_memory:LongTermMemory -> ModuleNotFoundError: No module named 'crewai.memory.long_term'",
+            "crewai.memory:LongTermMemory -> AttributeError: crewai.memory icinde LongTermMemory yok"
+          ]
+        },
+        {
+          "ontology_term": "EpisodicMemory",
+          "resolved": null,
+          "tried": [
+            "crewai.memory.external.external_memory:ExternalMemory"
+          ],
+          "errors": [
+            "crewai.memory.external.external_memory:ExternalMemory -> ModuleNotFoundError: No module named 'crewai.memory.external'"
+          ]
+        },
+        {
+          "ontology_term": "SemanticMemory",
+          "resolved": null,
+          "tried": [
+            "crewai.memory.entity.entity_memory:EntityMemory",
+            "crewai.memory:EntityMemory"
+          ],
+          "errors": [
+            "crewai.memory.entity.entity_memory:EntityMemory -> ModuleNotFoundError: No module named 'crewai.memory.entity'",
+            "crewai.memory:EntityMemory -> AttributeError: crewai.memory icinde EntityMemory yok"
+          ]
+        },
+        {
+          "ontology_term": "Prompt",
+          "resolved": "crewai.utilities.prompts:Prompts",
+          "module": "crewai.utilities.prompts",
+          "qualname": "Prompts",
+          "kind": "class",
+          "mro": [
+            "crewai.utilities.prompts.Prompts",
+            "pydantic.main.BaseModel"
+          ]
+        },
+        {
+          "ontology_term": "Task",
+          "resolved": "crewai:Task",
+          "module": "crewai.task",
+          "qualname": "Task",
+          "kind": "class",
+          "mro": [
+            "crewai.task.Task",
+            "pydantic.main.BaseModel"
+          ]
+        },
+        {
+          "ontology_term": "Plan",
+          "resolved": "crewai.utilities.planning_handler:CrewPlanner",
+          "module": "crewai.utilities.planning_handler",
+          "qualname": "CrewPlanner",
+          "kind": "class",
+          "mro": [
+            "crewai.utilities.planning_handler.CrewPlanner"
+          ]
+        },
+        {
+          "ontology_term": "Workflow",
+          "resolved": "crewai:Process",
+          "module": "crewai.process",
+          "qualname": "Process",
+          "kind": "class",
+          "mro": [
+            "crewai.process.Process",
+            "builtins.str",
+            "enum.Enum"
+          ]
+        },
+        {
+          "ontology_term": "Flow",
+          "resolved": "crewai.flow.flow:Flow",
+          "module": "crewai.flow.flow",
+          "qualname": "Flow",
+          "kind": "class",
+          "mro": [
+            "crewai.flow.flow.Flow",
+            "pydantic.main.BaseModel",
+            "typing.Generic"
+          ]
+        },
+        {
+          "ontology_term": "Delegation",
+          "resolved": "crewai.tools.agent_tools.agent_tools:AgentTools",
+          "module": "crewai.tools.agent_tools.agent_tools",
+          "qualname": "AgentTools",
+          "kind": "class",
+          "mro": [
+            "crewai.tools.agent_tools.agent_tools.AgentTools"
+          ]
+        },
+        {
+          "ontology_term": "ExecutionContext",
+          "resolved": "crewai.crews.crew_output:CrewOutput",
+          "module": "crewai.crews.crew_output",
+          "qualname": "CrewOutput",
+          "kind": "class",
+          "mro": [
+            "crewai.crews.crew_output.CrewOutput",
+            "pydantic.main.BaseModel"
+          ]
+        }
+      ]
+    }
+  },
+  "package_versions": {
+    "langchain": "1.3.2",
+    "langchain_core": "1.4.0",
+    "langgraph": "?",
+    "crewai": "1.14.6"
+  }
+}

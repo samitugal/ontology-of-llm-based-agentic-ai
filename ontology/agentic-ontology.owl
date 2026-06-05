@@ -1,0 +1,1257 @@
+<?xml version="1.0"?>
+<!--
+  BDM Tabanli Etmen Sistemleri Ontolojisi
+  Sami Tugal - Ege Universitesi Bilgisayar Muhendisligi
+  ORCID: 0009-0008-6595-7053
+  Faz 3 ornegi - 2026-04-28
+
+  Format: OWL 2 XML Syntax (W3C OWL 2 XML Serialization)
+  OASIS 2 entegrasyonu: oasis:Agent, oasis:TaskDescription, oasis:Behaviour
+  Aksiyom kapsami: equivalentClass, someValuesFrom, allValuesFrom, hasValue, inverseOf
+-->
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.ege.edu.tr/cs/ontology/llm-agent"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:oasis="http://www.dmi.unict.it/oasis2#"
+     ontologyIRI="http://www.ege.edu.tr/cs/ontology/llm-agent"
+     versionIRI="http://www.ege.edu.tr/cs/ontology/llm-agent/0.1">
+
+    <Prefix name="" IRI="http://www.ege.edu.tr/cs/ontology/llm-agent#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="oasis" IRI="http://www.dmi.unict.it/oasis2#"/>
+
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal>BDM Tabanli Etmen Sistemleri Ontolojisi. OASIS 2 ile entegre, cerceve bagimsiz LLM-agent ontolojisi.</Literal>
+    </Annotation>
+
+    <!-- OASIS 2 ontolojisini import et (terminolojik referans) -->
+    <Import>http://www.dmi.unict.it/oasis2</Import>
+
+    <!-- ====================================================== -->
+    <!-- KATMAN 1: CEKIRDEK VARLIKLAR                           -->
+    <!-- ====================================================== -->
+    <Declaration><Class IRI="#Agent"/></Declaration>
+    <Declaration><Class IRI="#AgentGroup"/></Declaration>
+    <Declaration><Class IRI="#AgentTemplate"/></Declaration>
+    <Declaration><Class IRI="#Role"/></Declaration>
+    <Declaration><Class IRI="#Policy"/></Declaration>
+
+    <!-- KATMAN 2: ETKILESIM VE AKIS -->
+    <Declaration><Class IRI="#Session"/></Declaration>
+    <Declaration><Class IRI="#Message"/></Declaration>
+    <Declaration><Class IRI="#UserMessage"/></Declaration>
+    <Declaration><Class IRI="#AgentMessage"/></Declaration>
+    <Declaration><Class IRI="#Observation"/></Declaration>
+    <Declaration><Class IRI="#Context"/></Declaration>
+
+    <!-- KATMAN 3: YETENEK -->
+    <Declaration><Class IRI="#Tool"/></Declaration>
+    <Declaration><Class IRI="#ToolCall"/></Declaration>
+    <Declaration><Class IRI="#ToolResult"/></Declaration>
+    <Declaration><Class IRI="#Resource"/></Declaration>
+    <Declaration><Class IRI="#Action"/></Declaration>
+    <Declaration><Class IRI="#Capability"/></Declaration>
+
+    <!-- KATMAN 4: HAFIZA -->
+    <Declaration><Class IRI="#Memory"/></Declaration>
+    <Declaration><Class IRI="#ShortTermMemory"/></Declaration>
+    <Declaration><Class IRI="#LongTermMemory"/></Declaration>
+    <Declaration><Class IRI="#EpisodicMemory"/></Declaration>
+    <Declaration><Class IRI="#SemanticMemory"/></Declaration>
+    <Declaration><Class IRI="#MemoryStrategy"/></Declaration>
+    <Declaration><Class IRI="#EvictionStrategy"/></Declaration>
+    <Declaration><Class IRI="#RetrievalStrategy"/></Declaration>
+    <Declaration><Class IRI="#CompressionStrategy"/></Declaration>
+
+    <!-- KATMAN 5: MODEL VE YAPILANDIRMA -->
+    <Declaration><Class IRI="#LLMModel"/></Declaration>
+    <Declaration><Class IRI="#Prompt"/></Declaration>
+    <Declaration><Class IRI="#SystemPrompt"/></Declaration>
+    <Declaration><Class IRI="#UserPrompt"/></Declaration>
+    <Declaration><Class IRI="#Parameter"/></Declaration>
+    <Declaration><Class IRI="#ModelConfiguration"/></Declaration>
+
+    <!-- KATMAN 6: ORKESTRASYON -->
+    <Declaration><Class IRI="#Task"/></Declaration>
+    <Declaration><Class IRI="#Subtask"/></Declaration>
+    <Declaration><Class IRI="#Plan"/></Declaration>
+    <Declaration><Class IRI="#Workflow"/></Declaration>
+    <Declaration><Class IRI="#Delegation"/></Declaration>
+    <Declaration><Class IRI="#ExecutionContext"/></Declaration>
+    <Declaration><Class IRI="#Channel"/></Declaration>
+    <Declaration><Class IRI="#Protocol"/></Declaration>
+    <Declaration><Class IRI="#MessageRole"/></Declaration>
+
+    <!-- ====================================================== -->
+    <!-- OBJECT PROPERTY DECLARATIONS                           -->
+    <!-- ====================================================== -->
+    <Declaration><ObjectProperty IRI="#hasCapability"/></Declaration>
+    <Declaration><ObjectProperty IRI="#capabilityOf"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasMember"/></Declaration>
+    <Declaration><ObjectProperty IRI="#memberOf"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasMessage"/></Declaration>
+    <Declaration><ObjectProperty IRI="#partOfSession"/></Declaration>
+    <Declaration><ObjectProperty IRI="#invokesTool"/></Declaration>
+    <Declaration><ObjectProperty IRI="#invokedBy"/></Declaration>
+    <Declaration><ObjectProperty IRI="#producesResult"/></Declaration>
+    <Declaration><ObjectProperty IRI="#resultOf"/></Declaration>
+    <Declaration><ObjectProperty IRI="#delegatesTo"/></Declaration>
+    <Declaration><ObjectProperty IRI="#delegatedBy"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasMessageRole"/></Declaration>
+    <Declaration><ObjectProperty IRI="#forRole"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasStep"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasMemory"/></Declaration>
+    <Declaration><ObjectProperty IRI="#usesModel"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasParameter"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasMemoryStrategy"/></Declaration>
+    <Declaration><ObjectProperty IRI="#followsProtocol"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasConfiguration"/></Declaration>
+    <!-- Yeni eklenenler (Faz 3 tamamlama) -->
+    <Declaration><ObjectProperty IRI="#hasRole"/></Declaration>
+    <Declaration><ObjectProperty IRI="#playedBy"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasPolicy"/></Declaration>
+    <Declaration><ObjectProperty IRI="#accessesResource"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasObservation"/></Declaration>
+    <Declaration><ObjectProperty IRI="#observedIn"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasContext"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasPlan"/></Declaration>
+    <Declaration><ObjectProperty IRI="#viaChannel"/></Declaration>
+    <Declaration><ObjectProperty IRI="#subtaskOf"/></Declaration>
+    <Declaration><ObjectProperty IRI="#runsIn"/></Declaration>
+    <Declaration><ObjectProperty IRI="#delegator"/></Declaration>
+    <Declaration><ObjectProperty IRI="#delegatedTask"/></Declaration>
+    <Declaration><ObjectProperty IRI="#hasAction"/></Declaration>
+    <Declaration><ObjectProperty IRI="#instantiates"/></Declaration>
+    <!-- Agent baglanti eksiklikleri -->
+    <Declaration><ObjectProperty IRI="#hasSession"/></Declaration>
+    <Declaration><ObjectProperty IRI="#sessionOf"/></Declaration>
+    <Declaration><ObjectProperty IRI="#makesToolCall"/></Declaration>
+    <Declaration><ObjectProperty IRI="#madeBy"/></Declaration>
+    <!-- AgentConfiguration - Prompt baglantisi -->
+    <Declaration><ObjectProperty IRI="#hasPrompt"/></Declaration>
+    <Declaration><ObjectProperty IRI="#promptOf"/></Declaration>
+    <!-- Capability - Tool baglantisi (CQ1) -->
+    <Declaration><ObjectProperty IRI="#usesTool"/></Declaration>
+    <Declaration><ObjectProperty IRI="#toolFor"/></Declaration>
+    <!-- Delegation - Policy baglantisi (CQ4) -->
+    <Declaration><ObjectProperty IRI="#triggeredBy"/></Declaration>
+    <!-- AgentGroup - Workflow koordinasyon baglantisi (CQ6) -->
+    <Declaration><ObjectProperty IRI="#coordinatesVia"/></Declaration>
+    <!-- AgentMessage - Agent baglantisi (CQ5) -->
+    <Declaration><ObjectProperty IRI="#generatedBy"/></Declaration>
+    <!-- Memory icerik baglantilari -->
+    <Declaration><ObjectProperty IRI="#storesMessage"/></Declaration>
+    <Declaration><ObjectProperty IRI="#recordsSession"/></Declaration>
+    <!-- AgentGroup paylasilan hafiza (CQ3-B) -->
+    <Declaration><ObjectProperty IRI="#hasSharedMemory"/></Declaration>
+
+    <!-- ====================================================== -->
+    <!-- DATA PROPERTY DECLARATIONS - Sinif Attribute Tanimlari -->
+    <!-- ====================================================== -->
+    <!-- Genel/ortak attribute'lar -->
+    <Declaration><DataProperty IRI="#hasDescription"/></Declaration>
+    <Declaration><DataProperty IRI="#createdAt"/></Declaration>
+    <Declaration><DataProperty IRI="#updatedAt"/></Declaration>
+
+    <!-- Agent attribute'lari -->
+    <Declaration><DataProperty IRI="#agentId"/></Declaration>
+    <Declaration><DataProperty IRI="#agentName"/></Declaration>
+    <Declaration><DataProperty IRI="#agentVersion"/></Declaration>
+    <Declaration><DataProperty IRI="#isActive"/></Declaration>
+
+    <!-- AgentGroup -->
+    <Declaration><DataProperty IRI="#groupName"/></Declaration>
+
+    <!-- AgentTemplate / AgentConfiguration -->
+    <Declaration><DataProperty IRI="#templateName"/></Declaration>
+    <Declaration><DataProperty IRI="#templateVersion"/></Declaration>
+
+    <!-- Role / Policy -->
+    <Declaration><DataProperty IRI="#roleName"/></Declaration>
+    <Declaration><DataProperty IRI="#policyName"/></Declaration>
+    <Declaration><DataProperty IRI="#policyExpression"/></Declaration>
+    <Declaration><DataProperty IRI="#policyPriority"/></Declaration>
+
+    <!-- Session / Message -->
+    <Declaration><DataProperty IRI="#sessionId"/></Declaration>
+    <Declaration><DataProperty IRI="#sessionStatus"/></Declaration>
+    <Declaration><DataProperty IRI="#startTime"/></Declaration>
+    <Declaration><DataProperty IRI="#endTime"/></Declaration>
+    <Declaration><DataProperty IRI="#messageId"/></Declaration>
+    <Declaration><DataProperty IRI="#messageContent"/></Declaration>
+    <Declaration><DataProperty IRI="#messageTimestamp"/></Declaration>
+
+    <!-- Observation -->
+    <Declaration><DataProperty IRI="#tokenCount"/></Declaration>
+    <Declaration><DataProperty IRI="#latencyMs"/></Declaration>
+    <Declaration><DataProperty IRI="#errorCount"/></Declaration>
+    <Declaration><DataProperty IRI="#cost"/></Declaration>
+    <Declaration><DataProperty IRI="#observedAt"/></Declaration>
+
+    <!-- Context -->
+    <Declaration><DataProperty IRI="#contextWindowSize"/></Declaration>
+    <Declaration><DataProperty IRI="#contextSnapshot"/></Declaration>
+
+    <!-- Tool / ToolCall / ToolResult / Resource / Action / Capability -->
+    <Declaration><DataProperty IRI="#toolName"/></Declaration>
+    <Declaration><DataProperty IRI="#toolVersion"/></Declaration>
+    <Declaration><DataProperty IRI="#toolEndpoint"/></Declaration>
+    <Declaration><DataProperty IRI="#isAsync"/></Declaration>
+    <Declaration><DataProperty IRI="#callId"/></Declaration>
+    <Declaration><DataProperty IRI="#callTimestamp"/></Declaration>
+    <Declaration><DataProperty IRI="#inputJson"/></Declaration>
+    <Declaration><DataProperty IRI="#resultStatus"/></Declaration>
+    <Declaration><DataProperty IRI="#resultPayload"/></Declaration>
+    <Declaration><DataProperty IRI="#errorMessage"/></Declaration>
+    <Declaration><DataProperty IRI="#executionTimeMs"/></Declaration>
+    <Declaration><DataProperty IRI="#resourceURI"/></Declaration>
+    <Declaration><DataProperty IRI="#resourceType"/></Declaration>
+    <Declaration><DataProperty IRI="#accessMode"/></Declaration>
+    <Declaration><DataProperty IRI="#actionName"/></Declaration>
+    <Declaration><DataProperty IRI="#capabilityName"/></Declaration>
+
+    <!-- Memory katmani -->
+    <Declaration><DataProperty IRI="#memoryCapacity"/></Declaration>
+    <Declaration><DataProperty IRI="#ttlSeconds"/></Declaration>
+    <Declaration><DataProperty IRI="#persistenceBackend"/></Declaration>
+    <Declaration><DataProperty IRI="#maxEpisodes"/></Declaration>
+    <Declaration><DataProperty IRI="#vectorDimension"/></Declaration>
+    <Declaration><DataProperty IRI="#embeddingModel"/></Declaration>
+    <Declaration><DataProperty IRI="#strategyName"/></Declaration>
+    <Declaration><DataProperty IRI="#strategyAlgorithm"/></Declaration>
+
+    <!-- Model / Prompt / Parameter -->
+    <Declaration><DataProperty IRI="#modelName"/></Declaration>
+    <Declaration><DataProperty IRI="#modelProvider"/></Declaration>
+    <Declaration><DataProperty IRI="#modelVersion"/></Declaration>
+    <Declaration><DataProperty IRI="#contextLength"/></Declaration>
+    <Declaration><DataProperty IRI="#supportsFunctionCalling"/></Declaration>
+    <Declaration><DataProperty IRI="#promptText"/></Declaration>
+    <Declaration><DataProperty IRI="#templateVariables"/></Declaration>
+    <Declaration><DataProperty IRI="#paramName"/></Declaration>
+    <Declaration><DataProperty IRI="#paramValue"/></Declaration>
+    <Declaration><DataProperty IRI="#paramType"/></Declaration>
+
+    <!-- Orkestrasyon: Task / Plan / Workflow / Delegation / Channel / Protocol -->
+    <Declaration><DataProperty IRI="#taskName"/></Declaration>
+    <Declaration><DataProperty IRI="#taskStatus"/></Declaration>
+    <Declaration><DataProperty IRI="#taskPriority"/></Declaration>
+    <Declaration><DataProperty IRI="#dueDate"/></Declaration>
+    <Declaration><DataProperty IRI="#stepOrder"/></Declaration>
+    <Declaration><DataProperty IRI="#planName"/></Declaration>
+    <Declaration><DataProperty IRI="#planVersion"/></Declaration>
+    <Declaration><DataProperty IRI="#workflowName"/></Declaration>
+    <Declaration><DataProperty IRI="#workflowStatus"/></Declaration>
+    <Declaration><DataProperty IRI="#delegatedAt"/></Declaration>
+    <Declaration><DataProperty IRI="#delegationReason"/></Declaration>
+    <Declaration><DataProperty IRI="#contextId"/></Declaration>
+    <Declaration><DataProperty IRI="#environmentVars"/></Declaration>
+    <Declaration><DataProperty IRI="#channelType"/></Declaration>
+    <Declaration><DataProperty IRI="#channelEndpoint"/></Declaration>
+    <Declaration><DataProperty IRI="#protocolName"/></Declaration>
+    <Declaration><DataProperty IRI="#protocolVersion"/></Declaration>
+
+    <!-- NAMED INDIVIDUALS -->
+    <Declaration><NamedIndividual IRI="#User"/></Declaration>
+    <Declaration><NamedIndividual IRI="#Assistant"/></Declaration>
+    <Declaration><NamedIndividual IRI="#System"/></Declaration>
+    <Declaration><NamedIndividual IRI="#ToolRole"/></Declaration>
+    <Declaration><NamedIndividual IRI="#Orchestrator"/></Declaration>
+    <Declaration><NamedIndividual IRI="#Worker"/></Declaration>
+    <Declaration><NamedIndividual IRI="#Reviewer"/></Declaration>
+    <Declaration><NamedIndividual IRI="#TemperatureParam"/></Declaration>
+    <Declaration><NamedIndividual IRI="#MaxTokensParam"/></Declaration>
+    <Declaration><NamedIndividual IRI="#TopPParam"/></Declaration>
+    <Declaration><NamedIndividual IRI="#FIFO"/></Declaration>
+    <Declaration><NamedIndividual IRI="#LRU"/></Declaration>
+    <Declaration><NamedIndividual IRI="#RAG"/></Declaration>
+    <Declaration><NamedIndividual IRI="#Summarization"/></Declaration>
+    <Declaration><NamedIndividual IRI="#FIPA_ACL"/></Declaration>
+    <Declaration><NamedIndividual IRI="#MCP"/></Declaration>
+    <Declaration><NamedIndividual IRI="#JSON_RPC"/></Declaration>
+
+    <!-- ====================================================== -->
+    <!-- TAKSONOMI: SUBCLASS HIYERARSISI                        -->
+    <!-- ====================================================== -->
+    <SubClassOf>
+        <Class IRI="#ShortTermMemory"/>
+        <Class IRI="#Memory"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LongTermMemory"/>
+        <Class IRI="#Memory"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EpisodicMemory"/>
+        <Class IRI="#Memory"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SemanticMemory"/>
+        <Class IRI="#Memory"/>
+    </SubClassOf>
+
+    <!-- MemoryStrategy alt sinif hiyerarsisi -->
+    <SubClassOf>
+        <Class IRI="#EvictionStrategy"/>
+        <Class IRI="#MemoryStrategy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RetrievalStrategy"/>
+        <Class IRI="#MemoryStrategy"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CompressionStrategy"/>
+        <Class IRI="#MemoryStrategy"/>
+    </SubClassOf>
+
+    <!-- ShortTermMemory yalnizca EvictionStrategy kullanabilir -->
+    <SubClassOf>
+        <Class IRI="#ShortTermMemory"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#hasMemoryStrategy"/>
+            <Class IRI="#EvictionStrategy"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+
+    <!-- SemanticMemory yalnizca RetrievalStrategy kullanabilir -->
+    <SubClassOf>
+        <Class IRI="#SemanticMemory"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#hasMemoryStrategy"/>
+            <Class IRI="#RetrievalStrategy"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+
+    <!-- ShortTermMemory icerigi: son mesajlar -->
+    <SubClassOf>
+        <Class IRI="#ShortTermMemory"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#storesMessage"/>
+            <Class IRI="#Message"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+
+    <!-- EpisodicMemory icerigi: gecmis sessionlar -->
+    <SubClassOf>
+        <Class IRI="#EpisodicMemory"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#recordsSession"/>
+            <Class IRI="#Session"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UserMessage"/>
+        <Class IRI="#Message"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UserMessage"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#hasMessageRole"/>
+            <NamedIndividual IRI="#User"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AgentMessage"/>
+        <Class IRI="#Message"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AgentMessage"/>
+        <ObjectHasValue>
+            <ObjectProperty IRI="#hasMessageRole"/>
+            <NamedIndividual IRI="#Assistant"/>
+        </ObjectHasValue>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AgentMessage"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#generatedBy"/>
+            <Class IRI="#Agent"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SystemPrompt"/>
+        <Class IRI="#Prompt"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#UserPrompt"/>
+        <Class IRI="#Prompt"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Subtask"/>
+        <Class IRI="#Task"/>
+    </SubClassOf>
+
+    <!-- ====================================================== -->
+    <!-- (1) SUBCLASSOF - OASIS 2 ENTEGRASYONU                   -->
+    <!-- my:Agent, oasis:Agent'in daha ozellesmiş versiyonudur. -->
+    <!-- Terminolojik referans: hasBehaviour mirasi alinir,     -->
+    <!-- ancak extension'lar esitlenmez.                        -->
+    <!-- ====================================================== -->
+    <SubClassOf>
+        <Class IRI="#Agent"/>
+        <Class abbreviatedIRI="oasis:Agent"/>
+    </SubClassOf>
+
+    <!-- (1.b) my:Task ⊑ oasis:TaskDescription                  -->
+    <!-- OASIS 2 atomik gorev tanimi terminolojik referans.     -->
+    <SubClassOf>
+        <Class IRI="#Task"/>
+        <Class abbreviatedIRI="oasis:TaskDescription"/>
+    </SubClassOf>
+
+    <!-- my:Capability rdfs:subClassOf oasis:Behaviour          -->
+    <!-- Kavramsal hierarsi: Yetenek soyutlamasi, OASIS 2'deki  -->
+    <!-- Behaviour davranis sinifinin alt sinifidir.            -->
+    <SubClassOf>
+        <Class IRI="#Capability"/>
+        <Class abbreviatedIRI="oasis:Behaviour"/>
+    </SubClassOf>
+
+    <!-- ====================================================== -->
+    <!-- (2) EQUIVALENT CLASS - ENUMERATED (oneOf)              -->
+    <!-- MessageRole tam 4 bireyden olusan kapali bir sinif.    -->
+    <!-- ====================================================== -->
+    <EquivalentClasses>
+        <Class IRI="#MessageRole"/>
+        <ObjectOneOf>
+            <NamedIndividual IRI="#User"/>
+            <NamedIndividual IRI="#Assistant"/>
+            <NamedIndividual IRI="#System"/>
+            <NamedIndividual IRI="#ToolRole"/>
+        </ObjectOneOf>
+    </EquivalentClasses>
+
+    <!-- ====================================================== -->
+    <!-- (3) hasValue + equivalentClass - SystemPrompt          -->
+    <!-- SystemPrompt, "forRole" degeri 'System' olan Prompt'tur-->
+    <!-- ====================================================== -->
+    <EquivalentClasses>
+        <Class IRI="#SystemPrompt"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Prompt"/>
+            <ObjectHasValue>
+                <ObjectProperty IRI="#forRole"/>
+                <NamedIndividual IRI="#System"/>
+            </ObjectHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+
+    <!-- ====================================================== -->
+    <!-- (4) someValuesFrom KISITLARI                           -->
+    <!-- ====================================================== -->
+    <!-- Her Agent en az bir Capability sahibidir. -->
+    <SubClassOf>
+        <Class IRI="#Agent"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasCapability"/>
+            <Class IRI="#Capability"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+
+    <!-- Her Session en az bir Message icermelidir. -->
+    <SubClassOf>
+        <Class IRI="#Session"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasMessage"/>
+            <Class IRI="#Message"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+
+    <!-- Her Session mutlaka bir Agent veya AgentGroup'a ait olmalidir. -->
+    <SubClassOf>
+        <Class IRI="#Session"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#sessionOf"/>
+            <ObjectUnionOf>
+                <Class IRI="#Agent"/>
+                <Class IRI="#AgentGroup"/>
+            </ObjectUnionOf>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+
+    <!-- Her ToolCall mutlaka bir Tool cagirir. -->
+    <SubClassOf>
+        <Class IRI="#ToolCall"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#invokesTool"/>
+            <Class IRI="#Tool"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+
+    <!-- Her Delegation en az bir Agent'a (delegatee) yonelir. -->
+    <SubClassOf>
+        <Class IRI="#Delegation"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#delegatesTo"/>
+            <Class IRI="#Agent"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+
+    <!-- Her ToolResult mutlaka bir ToolCall'dan uretilmis olmalidir. -->
+    <SubClassOf>
+        <Class IRI="#ToolResult"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#resultOf"/>
+            <Class IRI="#ToolCall"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+
+    <!-- Her Subtask mutlaka bir ust Task'a bagli olmalidir. -->
+    <SubClassOf>
+        <Class IRI="#Subtask"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#subtaskOf"/>
+            <Class IRI="#Task"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+
+    <!-- Her Delegation'in mutlaka bir gonderen Agent'i olmalidir. -->
+    <SubClassOf>
+        <Class IRI="#Delegation"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#delegator"/>
+            <Class IRI="#Agent"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+
+    <!-- Her Workflow en az bir Plan icermek zorundadir. -->
+    <SubClassOf>
+        <Class IRI="#Workflow"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#hasPlan"/>
+            <Class IRI="#Plan"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+
+    <!-- ====================================================== -->
+    <!-- (5) allValuesFrom KISITLARI                            -->
+    <!-- ====================================================== -->
+    <!-- AgentGroup yalnizca Agent uyelerine sahip olabilir. -->
+    <SubClassOf>
+        <Class IRI="#AgentGroup"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#hasMember"/>
+            <Class IRI="#Agent"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+
+    <!-- Plan yalnizca Task tipi adimlardan olusabilir. -->
+    <SubClassOf>
+        <Class IRI="#Plan"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#hasStep"/>
+            <Class IRI="#Task"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+
+    <!-- Message yalnizca MessageRole tipinde role'e sahip olabilir. -->
+    <SubClassOf>
+        <Class IRI="#Message"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="#hasMessageRole"/>
+            <Class IRI="#MessageRole"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+
+    <!-- ====================================================== -->
+    <!-- (6) INVERSE OBJECT PROPERTIES                          -->
+    <!-- ====================================================== -->
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasCapability"/>
+        <ObjectProperty IRI="#capabilityOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasMember"/>
+        <ObjectProperty IRI="#memberOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasMessage"/>
+        <ObjectProperty IRI="#partOfSession"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#invokesTool"/>
+        <ObjectProperty IRI="#invokedBy"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#producesResult"/>
+        <ObjectProperty IRI="#resultOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#delegatesTo"/>
+        <ObjectProperty IRI="#delegatedBy"/>
+    </InverseObjectProperties>
+
+    <!-- ====================================================== -->
+    <!-- DOMAIN / RANGE TANIMLARI                                -->
+    <!-- ====================================================== -->
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasCapability"/>
+        <Class IRI="#Agent"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasCapability"/>
+        <Class IRI="#Capability"/>
+    </ObjectPropertyRange>
+
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasMember"/>
+        <Class IRI="#AgentGroup"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasMember"/>
+        <Class IRI="#Agent"/>
+    </ObjectPropertyRange>
+
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasMessage"/>
+        <Class IRI="#Session"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasMessage"/>
+        <Class IRI="#Message"/>
+    </ObjectPropertyRange>
+
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#invokesTool"/>
+        <Class IRI="#ToolCall"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#invokesTool"/>
+        <Class IRI="#Tool"/>
+    </ObjectPropertyRange>
+
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasMessageRole"/>
+        <Class IRI="#Message"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasMessageRole"/>
+        <Class IRI="#MessageRole"/>
+    </ObjectPropertyRange>
+
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#forRole"/>
+        <Class IRI="#Prompt"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#forRole"/>
+        <Class IRI="#MessageRole"/>
+    </ObjectPropertyRange>
+
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#delegatesTo"/>
+        <Class IRI="#Delegation"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#delegatesTo"/>
+        <Class IRI="#Agent"/>
+    </ObjectPropertyRange>
+
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasConfiguration"/>
+        <Class IRI="#Agent"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasConfiguration"/>
+        <Class IRI="#ModelConfiguration"/>
+    </ObjectPropertyRange>
+
+    <DataPropertyDomain>
+        <DataProperty IRI="#agentName"/>
+        <Class IRI="#Agent"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#agentName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+
+
+    <DataPropertyDomain>
+        <DataProperty IRI="#tokenCount"/>
+        <Class IRI="#Observation"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#tokenCount"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+
+    <!-- ====================================================== -->
+    <!-- KARDINALITE: Bir Agent tam 1 ModelConfiguration'a sahip-->
+    <!-- ====================================================== -->
+    <SubClassOf>
+        <Class IRI="#Agent"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasConfiguration"/>
+            <Class IRI="#ModelConfiguration"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+
+    <!-- ====================================================== -->
+    <!-- DISJOINT KISITLAR                                      -->
+    <!-- ====================================================== -->
+    <DisjointClasses>
+        <Class IRI="#ShortTermMemory"/>
+        <Class IRI="#LongTermMemory"/>
+        <Class IRI="#EpisodicMemory"/>
+        <Class IRI="#SemanticMemory"/>
+    </DisjointClasses>
+
+    <DisjointClasses>
+        <Class IRI="#Agent"/>
+        <Class IRI="#Tool"/>
+        <Class IRI="#Memory"/>
+        <Class IRI="#Session"/>
+        <Class IRI="#Message"/>
+    </DisjointClasses>
+
+    <DisjointClasses>
+        <Class IRI="#UserMessage"/>
+        <Class IRI="#AgentMessage"/>
+    </DisjointClasses>
+
+    <DisjointClasses>
+        <Class IRI="#EvictionStrategy"/>
+        <Class IRI="#RetrievalStrategy"/>
+        <Class IRI="#CompressionStrategy"/>
+    </DisjointClasses>
+
+    <!-- ====================================================== -->
+    <!-- BIREY (Individual) ATAMALARI                           -->
+    <!-- ====================================================== -->
+    <ClassAssertion>
+        <Class IRI="#MessageRole"/>
+        <NamedIndividual IRI="#User"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#MessageRole"/>
+        <NamedIndividual IRI="#Assistant"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#MessageRole"/>
+        <NamedIndividual IRI="#System"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#MessageRole"/>
+        <NamedIndividual IRI="#ToolRole"/>
+    </ClassAssertion>
+
+    <ClassAssertion>
+        <Class IRI="#Role"/>
+        <NamedIndividual IRI="#Orchestrator"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Role"/>
+        <NamedIndividual IRI="#Worker"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Role"/>
+        <NamedIndividual IRI="#Reviewer"/>
+    </ClassAssertion>
+
+    <ClassAssertion>
+        <Class IRI="#Parameter"/>
+        <NamedIndividual IRI="#TemperatureParam"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#paramName"/>
+        <NamedIndividual IRI="#TemperatureParam"/>
+        <Literal datatypeIRI="xsd:string">temperature</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#paramType"/>
+        <NamedIndividual IRI="#TemperatureParam"/>
+        <Literal datatypeIRI="xsd:string">float</Literal>
+    </DataPropertyAssertion>
+
+    <ClassAssertion>
+        <Class IRI="#Parameter"/>
+        <NamedIndividual IRI="#MaxTokensParam"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#paramName"/>
+        <NamedIndividual IRI="#MaxTokensParam"/>
+        <Literal datatypeIRI="xsd:string">max_tokens</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#paramType"/>
+        <NamedIndividual IRI="#MaxTokensParam"/>
+        <Literal datatypeIRI="xsd:string">integer</Literal>
+    </DataPropertyAssertion>
+
+    <ClassAssertion>
+        <Class IRI="#Parameter"/>
+        <NamedIndividual IRI="#TopPParam"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#paramName"/>
+        <NamedIndividual IRI="#TopPParam"/>
+        <Literal datatypeIRI="xsd:string">top_p</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#paramType"/>
+        <NamedIndividual IRI="#TopPParam"/>
+        <Literal datatypeIRI="xsd:string">float</Literal>
+    </DataPropertyAssertion>
+
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#TemperatureParam"/>
+        <NamedIndividual IRI="#MaxTokensParam"/>
+        <NamedIndividual IRI="#TopPParam"/>
+    </DifferentIndividuals>
+
+    <ClassAssertion>
+        <Class IRI="#EvictionStrategy"/>
+        <NamedIndividual IRI="#FIFO"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EvictionStrategy"/>
+        <NamedIndividual IRI="#LRU"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RetrievalStrategy"/>
+        <NamedIndividual IRI="#RAG"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#CompressionStrategy"/>
+        <NamedIndividual IRI="#Summarization"/>
+    </ClassAssertion>
+
+    <ClassAssertion>
+        <Class IRI="#Protocol"/>
+        <NamedIndividual IRI="#FIPA_ACL"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Protocol"/>
+        <NamedIndividual IRI="#MCP"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Protocol"/>
+        <NamedIndividual IRI="#JSON_RPC"/>
+    </ClassAssertion>
+
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#User"/>
+        <NamedIndividual IRI="#Assistant"/>
+        <NamedIndividual IRI="#System"/>
+        <NamedIndividual IRI="#ToolRole"/>
+    </DifferentIndividuals>
+
+    <!-- ====================================================== -->
+    <!-- EKSIK OBJECT PROPERTY DOMAIN/RANGE TANIMLARI           -->
+    <!-- ====================================================== -->
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#capabilityOf"/><Class IRI="#Capability"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#capabilityOf"/><Class IRI="#Agent"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#memberOf"/><Class IRI="#Agent"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#memberOf"/><Class IRI="#AgentGroup"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#partOfSession"/><Class IRI="#Message"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#partOfSession"/><Class IRI="#Session"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#invokedBy"/><Class IRI="#Tool"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#invokedBy"/><Class IRI="#ToolCall"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#producesResult"/><Class IRI="#ToolCall"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#producesResult"/><Class IRI="#ToolResult"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#resultOf"/><Class IRI="#ToolResult"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#resultOf"/><Class IRI="#ToolCall"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#delegatedBy"/><Class IRI="#Agent"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#delegatedBy"/><Class IRI="#Delegation"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasStep"/><Class IRI="#Plan"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasStep"/><Class IRI="#Task"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasMemory"/><Class IRI="#Agent"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasMemory"/><Class IRI="#Memory"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#usesModel"/><Class IRI="#ModelConfiguration"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#usesModel"/><Class IRI="#LLMModel"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasParameter"/><Class IRI="#ModelConfiguration"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasParameter"/><Class IRI="#Parameter"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasMemoryStrategy"/><Class IRI="#Memory"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasMemoryStrategy"/><Class IRI="#MemoryStrategy"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#followsProtocol"/>
+        <ObjectUnionOf>
+            <Class IRI="#Channel"/>
+            <Class IRI="#Workflow"/>
+            <Class IRI="#Delegation"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#followsProtocol"/><Class IRI="#Protocol"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasRole"/><Class IRI="#Agent"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasRole"/><Class IRI="#Role"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#playedBy"/><Class IRI="#Role"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#playedBy"/><Class IRI="#Agent"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasPolicy"/><Class IRI="#Agent"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasPolicy"/><Class IRI="#Policy"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#accessesResource"/><Class IRI="#Tool"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#accessesResource"/><Class IRI="#Resource"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasObservation"/><Class IRI="#Session"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasObservation"/><Class IRI="#Observation"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#observedIn"/><Class IRI="#Observation"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#observedIn"/><Class IRI="#Session"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasContext"/><Class IRI="#Agent"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasContext"/><Class IRI="#Context"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasPlan"/><Class IRI="#Workflow"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasPlan"/><Class IRI="#Plan"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#viaChannel"/>
+        <ObjectUnionOf>
+            <Class IRI="#Delegation"/>
+            <Class IRI="#Workflow"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#viaChannel"/><Class IRI="#Channel"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#subtaskOf"/><Class IRI="#Subtask"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#subtaskOf"/><Class IRI="#Task"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#runsIn"/><Class IRI="#Task"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#runsIn"/><Class IRI="#ExecutionContext"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#delegator"/><Class IRI="#Delegation"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#delegator"/><Class IRI="#Agent"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#delegatedTask"/><Class IRI="#Delegation"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#delegatedTask"/><Class IRI="#Task"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasAction"/><Class IRI="#ToolCall"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasAction"/><Class IRI="#Action"/></ObjectPropertyRange>
+
+    <ObjectPropertyDomain><ObjectProperty IRI="#instantiates"/><Class IRI="#AgentTemplate"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#instantiates"/><Class IRI="#ModelConfiguration"/></ObjectPropertyRange>
+
+    <!-- hasSession / sessionOf -->
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasSession"/>
+        <ObjectUnionOf>
+            <Class IRI="#Agent"/>
+            <Class IRI="#AgentGroup"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasSession"/><Class IRI="#Session"/></ObjectPropertyRange>
+    <ObjectPropertyDomain><ObjectProperty IRI="#sessionOf"/><Class IRI="#Session"/></ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#sessionOf"/>
+        <ObjectUnionOf>
+            <Class IRI="#Agent"/>
+            <Class IRI="#AgentGroup"/>
+        </ObjectUnionOf>
+    </ObjectPropertyRange>
+
+    <!-- makesToolCall / madeBy -->
+    <ObjectPropertyDomain><ObjectProperty IRI="#makesToolCall"/><Class IRI="#Agent"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#makesToolCall"/><Class IRI="#ToolCall"/></ObjectPropertyRange>
+    <ObjectPropertyDomain><ObjectProperty IRI="#madeBy"/><Class IRI="#ToolCall"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#madeBy"/><Class IRI="#Agent"/></ObjectPropertyRange>
+
+    <!-- hasPrompt / promptOf -->
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasPrompt"/><Class IRI="#ModelConfiguration"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasPrompt"/><Class IRI="#Prompt"/></ObjectPropertyRange>
+    <ObjectPropertyDomain><ObjectProperty IRI="#promptOf"/><Class IRI="#Prompt"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#promptOf"/><Class IRI="#ModelConfiguration"/></ObjectPropertyRange>
+
+    <!-- coordinatesVia -->
+    <ObjectPropertyDomain><ObjectProperty IRI="#coordinatesVia"/><Class IRI="#AgentGroup"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#coordinatesVia"/><Class IRI="#Workflow"/></ObjectPropertyRange>
+
+    <!-- generatedBy -->
+    <ObjectPropertyDomain><ObjectProperty IRI="#generatedBy"/><Class IRI="#AgentMessage"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#generatedBy"/><Class IRI="#Agent"/></ObjectPropertyRange>
+
+    <!-- storesMessage / recordsSession -->
+    <ObjectPropertyDomain><ObjectProperty IRI="#storesMessage"/><Class IRI="#ShortTermMemory"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#storesMessage"/><Class IRI="#Message"/></ObjectPropertyRange>
+    <ObjectPropertyDomain><ObjectProperty IRI="#recordsSession"/><Class IRI="#EpisodicMemory"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#recordsSession"/><Class IRI="#Session"/></ObjectPropertyRange>
+
+    <!-- hasSharedMemory -->
+    <ObjectPropertyDomain><ObjectProperty IRI="#hasSharedMemory"/><Class IRI="#AgentGroup"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#hasSharedMemory"/><Class IRI="#Memory"/></ObjectPropertyRange>
+
+    <!-- triggeredBy -->
+    <ObjectPropertyDomain><ObjectProperty IRI="#triggeredBy"/><Class IRI="#Delegation"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#triggeredBy"/><Class IRI="#Policy"/></ObjectPropertyRange>
+
+    <!-- usesTool / toolFor -->
+    <ObjectPropertyDomain><ObjectProperty IRI="#usesTool"/><Class IRI="#Capability"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#usesTool"/><Class IRI="#Tool"/></ObjectPropertyRange>
+    <ObjectPropertyDomain><ObjectProperty IRI="#toolFor"/><Class IRI="#Tool"/></ObjectPropertyDomain>
+    <ObjectPropertyRange><ObjectProperty IRI="#toolFor"/><Class IRI="#Capability"/></ObjectPropertyRange>
+
+    <!-- Yeni inverse eslemeler -->
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasRole"/>
+        <ObjectProperty IRI="#playedBy"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasObservation"/>
+        <ObjectProperty IRI="#observedIn"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasSession"/>
+        <ObjectProperty IRI="#sessionOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#makesToolCall"/>
+        <ObjectProperty IRI="#madeBy"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasPrompt"/>
+        <ObjectProperty IRI="#promptOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#usesTool"/>
+        <ObjectProperty IRI="#toolFor"/>
+    </InverseObjectProperties>
+
+    <!-- ====================================================== -->
+    <!-- DATA PROPERTY DOMAIN / RANGE TANIMLARI                 -->
+    <!-- ====================================================== -->
+
+    <!-- Genel attribute'lar (cok sinifa uygulanabilir) -->
+    <DataPropertyRange><DataProperty IRI="#hasDescription"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#createdAt"/>
+        <ObjectUnionOf>
+            <Class IRI="#Agent"/>
+            <Class IRI="#Session"/>
+            <Class IRI="#Message"/>
+            <Class IRI="#ToolCall"/>
+            <Class IRI="#Task"/>
+            <Class IRI="#Delegation"/>
+        </ObjectUnionOf>
+    </DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#createdAt"/><Datatype abbreviatedIRI="xsd:dateTime"/></DataPropertyRange>
+    <DataPropertyRange><DataProperty IRI="#updatedAt"/><Datatype abbreviatedIRI="xsd:dateTime"/></DataPropertyRange>
+
+    <!-- Agent -->
+    <DataPropertyDomain><DataProperty IRI="#agentId"/><Class IRI="#Agent"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#agentId"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#agentVersion"/><Class IRI="#Agent"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#agentVersion"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#isActive"/><Class IRI="#Agent"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#isActive"/><Datatype abbreviatedIRI="xsd:boolean"/></DataPropertyRange>
+
+    <!-- AgentGroup / Template / Configuration -->
+    <DataPropertyDomain><DataProperty IRI="#groupName"/><Class IRI="#AgentGroup"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#groupName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#templateName"/><Class IRI="#AgentTemplate"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#templateName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#templateVersion"/><Class IRI="#AgentTemplate"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#templateVersion"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+
+    <!-- Role / Policy -->
+    <DataPropertyDomain><DataProperty IRI="#roleName"/><Class IRI="#Role"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#roleName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#policyName"/><Class IRI="#Policy"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#policyName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#policyExpression"/><Class IRI="#Policy"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#policyExpression"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#policyPriority"/><Class IRI="#Policy"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#policyPriority"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+
+    <!-- Session / Message -->
+    <DataPropertyDomain><DataProperty IRI="#sessionId"/><Class IRI="#Session"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#sessionId"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#sessionStatus"/><Class IRI="#Session"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#sessionStatus"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#startTime"/><Class IRI="#Session"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#startTime"/><Datatype abbreviatedIRI="xsd:dateTime"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#endTime"/><Class IRI="#Session"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#endTime"/><Datatype abbreviatedIRI="xsd:dateTime"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#messageId"/><Class IRI="#Message"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#messageId"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#messageContent"/><Class IRI="#Message"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#messageContent"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#messageTimestamp"/><Class IRI="#Message"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#messageTimestamp"/><Datatype abbreviatedIRI="xsd:dateTime"/></DataPropertyRange>
+
+    <!-- Observation -->
+    <DataPropertyDomain><DataProperty IRI="#latencyMs"/><Class IRI="#Observation"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#latencyMs"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#errorCount"/><Class IRI="#Observation"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#errorCount"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#cost"/><Class IRI="#Observation"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#cost"/><Datatype abbreviatedIRI="xsd:decimal"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#observedAt"/><Class IRI="#Observation"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#observedAt"/><Datatype abbreviatedIRI="xsd:dateTime"/></DataPropertyRange>
+
+    <!-- Context -->
+    <DataPropertyDomain><DataProperty IRI="#contextWindowSize"/><Class IRI="#Context"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#contextWindowSize"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#contextSnapshot"/><Class IRI="#Context"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#contextSnapshot"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+
+    <!-- Tool / ToolCall / ToolResult / Resource / Action / Capability -->
+    <DataPropertyDomain><DataProperty IRI="#toolName"/><Class IRI="#Tool"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#toolName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#toolVersion"/><Class IRI="#Tool"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#toolVersion"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#toolEndpoint"/><Class IRI="#Tool"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#toolEndpoint"/><Datatype abbreviatedIRI="xsd:anyURI"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#isAsync"/><Class IRI="#Tool"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#isAsync"/><Datatype abbreviatedIRI="xsd:boolean"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#callId"/><Class IRI="#ToolCall"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#callId"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#callTimestamp"/><Class IRI="#ToolCall"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#callTimestamp"/><Datatype abbreviatedIRI="xsd:dateTime"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#inputJson"/><Class IRI="#ToolCall"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#inputJson"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#resultStatus"/><Class IRI="#ToolResult"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#resultStatus"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#resultPayload"/><Class IRI="#ToolResult"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#resultPayload"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#errorMessage"/><Class IRI="#ToolResult"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#errorMessage"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#executionTimeMs"/><Class IRI="#ToolResult"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#executionTimeMs"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#resourceURI"/><Class IRI="#Resource"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#resourceURI"/><Datatype abbreviatedIRI="xsd:anyURI"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#resourceType"/><Class IRI="#Resource"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#resourceType"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#accessMode"/><Class IRI="#Resource"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#accessMode"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#actionName"/><Class IRI="#Action"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#actionName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#capabilityName"/><Class IRI="#Capability"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#capabilityName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+
+    <!-- Memory katmani -->
+    <DataPropertyDomain><DataProperty IRI="#memoryCapacity"/><Class IRI="#Memory"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#memoryCapacity"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#ttlSeconds"/><Class IRI="#ShortTermMemory"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#ttlSeconds"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#persistenceBackend"/><Class IRI="#LongTermMemory"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#persistenceBackend"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#maxEpisodes"/><Class IRI="#EpisodicMemory"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#maxEpisodes"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#vectorDimension"/><Class IRI="#SemanticMemory"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#vectorDimension"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#embeddingModel"/><Class IRI="#SemanticMemory"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#embeddingModel"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#strategyName"/><Class IRI="#MemoryStrategy"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#strategyName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#strategyAlgorithm"/><Class IRI="#MemoryStrategy"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#strategyAlgorithm"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+
+    <!-- Model & Prompt & Parameter -->
+    <DataPropertyDomain><DataProperty IRI="#modelName"/><Class IRI="#LLMModel"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#modelName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#modelProvider"/><Class IRI="#LLMModel"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#modelProvider"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#modelVersion"/><Class IRI="#LLMModel"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#modelVersion"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#contextLength"/><Class IRI="#LLMModel"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#contextLength"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#supportsFunctionCalling"/><Class IRI="#LLMModel"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#supportsFunctionCalling"/><Datatype abbreviatedIRI="xsd:boolean"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#promptText"/><Class IRI="#Prompt"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#promptText"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#templateVariables"/><Class IRI="#UserPrompt"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#templateVariables"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#paramName"/><Class IRI="#Parameter"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#paramName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#paramValue"/><Class IRI="#Parameter"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#paramValue"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#paramType"/><Class IRI="#Parameter"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#paramType"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+
+    <!-- Orkestrasyon -->
+    <DataPropertyDomain><DataProperty IRI="#taskName"/><Class IRI="#Task"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#taskName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#taskStatus"/><Class IRI="#Task"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#taskStatus"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#taskPriority"/><Class IRI="#Task"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#taskPriority"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#dueDate"/><Class IRI="#Task"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#dueDate"/><Datatype abbreviatedIRI="xsd:dateTime"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#stepOrder"/><Class IRI="#Subtask"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#stepOrder"/><Datatype abbreviatedIRI="xsd:integer"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#planName"/><Class IRI="#Plan"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#planName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#planVersion"/><Class IRI="#Plan"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#planVersion"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#workflowName"/><Class IRI="#Workflow"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#workflowName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#workflowStatus"/><Class IRI="#Workflow"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#workflowStatus"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#delegatedAt"/><Class IRI="#Delegation"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#delegatedAt"/><Datatype abbreviatedIRI="xsd:dateTime"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#delegationReason"/><Class IRI="#Delegation"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#delegationReason"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#contextId"/><Class IRI="#ExecutionContext"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#contextId"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#environmentVars"/><Class IRI="#ExecutionContext"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#environmentVars"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#channelType"/><Class IRI="#Channel"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#channelType"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#channelEndpoint"/><Class IRI="#Channel"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#channelEndpoint"/><Datatype abbreviatedIRI="xsd:anyURI"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#protocolName"/><Class IRI="#Protocol"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#protocolName"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+    <DataPropertyDomain><DataProperty IRI="#protocolVersion"/><Class IRI="#Protocol"/></DataPropertyDomain>
+    <DataPropertyRange><DataProperty IRI="#protocolVersion"/><Datatype abbreviatedIRI="xsd:string"/></DataPropertyRange>
+
+    <!-- ====================================================== -->
+    <!-- PROPERTY KARAKTERISTIKLERI                             -->
+    <!-- ====================================================== -->
+    <!-- Functional ObjectProperty: bir individual icin en fazla 1 deger -->
+    <FunctionalObjectProperty><ObjectProperty IRI="#hasConfiguration"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#partOfSession"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#invokesTool"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#resultOf"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#producesResult"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#hasMessageRole"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#usesModel"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#subtaskOf"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#delegator"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#delegatedTask"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#runsIn"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#madeBy"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#triggeredBy"/></FunctionalObjectProperty>
+    <FunctionalObjectProperty><ObjectProperty IRI="#generatedBy"/></FunctionalObjectProperty>
+
+    <!-- InverseFunctional: bir deger icin en fazla 1 individual -->
+    <InverseFunctionalObjectProperty><ObjectProperty IRI="#producesResult"/></InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty><ObjectProperty IRI="#hasConfiguration"/></InverseFunctionalObjectProperty>
+
+    <!-- Asymmetric / Irreflexive: bir Task kendisinin alt gorevi olamaz, etmen kendine delegasyon yapamaz -->
+    <AsymmetricObjectProperty><ObjectProperty IRI="#subtaskOf"/></AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty><ObjectProperty IRI="#subtaskOf"/></IrreflexiveObjectProperty>
+    <AsymmetricObjectProperty><ObjectProperty IRI="#delegatesTo"/></AsymmetricObjectProperty>
+    <IrreflexiveObjectProperty><ObjectProperty IRI="#delegatesTo"/></IrreflexiveObjectProperty>
+
+    <!-- Functional Data Properties: kimlik degerleri -->
+    <FunctionalDataProperty><DataProperty IRI="#agentId"/></FunctionalDataProperty>
+    <FunctionalDataProperty><DataProperty IRI="#sessionId"/></FunctionalDataProperty>
+    <FunctionalDataProperty><DataProperty IRI="#messageId"/></FunctionalDataProperty>
+    <FunctionalDataProperty><DataProperty IRI="#callId"/></FunctionalDataProperty>
+    <FunctionalDataProperty><DataProperty IRI="#contextId"/></FunctionalDataProperty>
+    <FunctionalDataProperty><DataProperty IRI="#startTime"/></FunctionalDataProperty>
+    <FunctionalDataProperty><DataProperty IRI="#endTime"/></FunctionalDataProperty>
+
+</Ontology>

@@ -1,0 +1,11 @@
+PREFIX : <http://www.ege.edu.tr/cs/ontology/llm-agent#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?agent ?tool ?resource WHERE {
+  ?agent rdf:type :Agent ;
+         :makesToolCall ?call .
+  ?call :invokesTool ?tool .
+  OPTIONAL { ?tool :accessesResource ?resource . }
+}
+ORDER BY ?agent ?tool

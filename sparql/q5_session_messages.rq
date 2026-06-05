@@ -1,0 +1,11 @@
+PREFIX : <http://www.ege.edu.tr/cs/ontology/llm-agent#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?session ?messageId ?role ?author WHERE {
+  ?session rdf:type :Session ;
+           :hasMessage ?msg .
+  ?msg :messageId ?messageId ;
+       :hasMessageRole ?role .
+  OPTIONAL { ?msg :generatedBy ?author . }
+}
+ORDER BY ?session ?messageId

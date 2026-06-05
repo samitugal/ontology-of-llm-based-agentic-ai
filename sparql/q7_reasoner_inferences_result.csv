@@ -1,0 +1,3 @@
+agent,inferredType
+http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#AutonomousAgent
+http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#MemoryAugmentedAgent

@@ -1,0 +1,5 @@
+session,messageId,role,author
+http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionSession,msg-003,http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant,http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent
+http://www.ege.edu.tr/cs/ontology/llm-agent#ExecutionSession,msg-004,http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant,http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerAgent
+http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchSession,msg-001,http://www.ege.edu.tr/cs/ontology/llm-agent#User,
+http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchSession,msg-002,http://www.ege.edu.tr/cs/ontology/llm-agent#Assistant,http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlannerAgent

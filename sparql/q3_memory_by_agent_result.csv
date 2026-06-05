@@ -1,0 +1,5 @@
+agent,memoryType
+http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#EpisodicMemory
+http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#LongTermMemory
+http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#SemanticMemory
+http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlannerAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#ShortTermMemory

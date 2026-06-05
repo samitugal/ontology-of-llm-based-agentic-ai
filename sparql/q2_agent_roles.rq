@@ -1,0 +1,9 @@
+PREFIX : <http://www.ege.edu.tr/cs/ontology/llm-agent#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?agent ?role WHERE {
+  ?agent rdf:type :Agent ;
+         :hasRole ?role .
+  FILTER(?role IN (:Orchestrator, :Worker, :Reviewer))
+}
+ORDER BY ?agent

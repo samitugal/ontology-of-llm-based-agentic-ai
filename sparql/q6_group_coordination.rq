@@ -1,0 +1,10 @@
+PREFIX : <http://www.ege.edu.tr/cs/ontology/llm-agent#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?group ?member ?workflow ?protocol WHERE {
+  ?group rdf:type :AgentGroup ;
+         :hasMember ?member .
+  OPTIONAL { ?group :coordinatesVia ?workflow . }
+  OPTIONAL { ?workflow :followsProtocol ?protocol . }
+}
+ORDER BY ?group ?member

@@ -1,0 +1,5 @@
+group,member,workflow,protocol
+http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchTeam,http://www.ege.edu.tr/cs/ontology/llm-agent#CodeExecutorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchWorkflow,http://www.ege.edu.tr/cs/ontology/llm-agent#MCP
+http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchTeam,http://www.ege.edu.tr/cs/ontology/llm-agent#OrchestratorAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchWorkflow,http://www.ege.edu.tr/cs/ontology/llm-agent#MCP
+http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchTeam,http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchPlannerAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchWorkflow,http://www.ege.edu.tr/cs/ontology/llm-agent#MCP
+http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchTeam,http://www.ege.edu.tr/cs/ontology/llm-agent#ReviewerAgent,http://www.ege.edu.tr/cs/ontology/llm-agent#ResearchWorkflow,http://www.ege.edu.tr/cs/ontology/llm-agent#MCP

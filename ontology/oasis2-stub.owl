@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.dmi.unict.it/oasis2"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     ontologyIRI="http://www.dmi.unict.it/oasis2">
+
+    <Prefix name="" IRI="http://www.dmi.unict.it/oasis2#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+
+    <!-- Minimal stub: sadece referans alinan siniflar -->
+    <Declaration><Class IRI="http://www.dmi.unict.it/oasis2#Agent"/></Declaration>
+    <Declaration><Class IRI="http://www.dmi.unict.it/oasis2#TaskDescription"/></Declaration>
+    <Declaration><Class IRI="http://www.dmi.unict.it/oasis2#Behaviour"/></Declaration>
+
+</Ontology>
