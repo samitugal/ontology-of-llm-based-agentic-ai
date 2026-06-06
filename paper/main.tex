@@ -154,7 +154,7 @@ OASIS 2, etmen davranışlarının anlamsal temsilini sağlamakta ve etmenlerin 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{|l|c|c|c|c|c|c|}
 \hline
-\textbf{Ontoloji / Yaklaşım} & \textbf{Hafıza} & \textbf{Araç} & \textbf{Oturum} & \textbf{Orkestrasyon /} & \textbf{OWL~2 +} & \textbf{Çerçeve-} \\
+\textbf{Ontoloji / Yaklaşım} & \textbf{Hafıza} & \textbf{Araç} & \textbf{Oturum} & \textbf{Orkestrasyon /} & \textbf{OWL~2 +} & \textbf{Çerçeve/Alan} \\
  & & & & \textbf{Delegasyon} & \textbf{Reasoner} & \textbf{bağımsız} \\
 \hline
 FIPA-ACL~\cite{fipa2002acl} & -- & -- & -- & K & -- & \checkmark \\
@@ -163,14 +163,14 @@ OASIS~2~\cite{bella2023oasis2} & -- & -- & -- & K & \checkmark & K \\
 \hline
 Klasik MAS ontolojileri & -- & -- & -- & \checkmark & K & \checkmark \\
 \hline
-BDM etmen taksonomileri & \checkmark & \checkmark & K & \checkmark & -- & \checkmark \\
+BDM etmen taksonomileri~\cite{sapkota2025taxonomy} & \checkmark & \checkmark & K & \checkmark & -- & \checkmark \\
 \hline
 AgentO~\cite{agento} & K & \checkmark & -- & \checkmark & \checkmark & \checkmark \\
 \hline
 \textbf{Bu çalışma} & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
 \hline
 \end{tabular}
-\caption{Mevcut yaklaşımların BDM-etmen kavramları açısından karşılaştırılması (\checkmark: tam kapsam, K: kısmi / dolaylı, --: yok). AgentO tek bir \texttt{Memory} sınıfı içerir (hafıza alt türleri yoktur) ve iş akışı/agentic-pattern modellemesine odaklanır; satır, yayımlanmış tanım ve kamuya açık ontoloji deposuna göre değerlendirilmiştir.}
+\caption{Mevcut yaklaşımların BDM-etmen kavramları açısından karşılaştırılması (\checkmark: tam kapsam, K: kısmi / dolaylı, --: yok). AgentO tek bir \texttt{Memory} sınıfı içerir (hafıza alt türleri yoktur) ve iş akışı/agentic-pattern modellemesine odaklanır; satır, yayımlanmış tanım ve kamuya açık ontoloji deposuna göre değerlendirilmiştir. OASIS~2 çerçeveden bağımsız bir temel ontolojidir; ancak blockchain/IoT alanına özgü kısıtlar içerdiğinden alan-bağımsızlık açısından kısmi (K) değerlendirilmiştir.}
 \label{tab:comparison}
 \end{table*}
 
@@ -303,12 +303,13 @@ Ontoloji 37 terimi altı katmanda organize etmektedir. Her katman işlevsel bir 
 \centering
 \begin{tikzpicture}[
   >={Stealth[length=2mm]},
-  node distance=11mm and 20mm,
+  node distance=17mm and 32mm,
   cls/.style={draw, rounded corners, fill=NavyBlue!6, font=\footnotesize\ttfamily,
               minimum height=6mm, inner sep=3pt},
   core/.style={draw, thick, rounded corners, fill=NavyBlue!18, font=\small\ttfamily\bfseries,
                minimum height=7mm, inner sep=4pt},
-  rel/.style={->, font=\scriptsize\ttfamily}
+  rel/.style={->},
+  lbl/.style={font=\scriptsize\ttfamily, fill=white, inner sep=1.2pt}
 ]
 \node[core] (agent) {Agent};
 \node[cls, above left=of agent]  (cap)     {Capability};
@@ -321,16 +322,16 @@ Ontoloji 37 terimi altı katmanda organize etmektedir. Her katman işlevsel bir 
 \node[cls, below right=of agent] (plan)    {Plan};
 \node[cls, below=of tc]          (tool)    {Tool};
 
-\draw[rel] (agent) -- (cap)     node[midway, sloped, above] {hasCapability};
-\draw[rel] (agent) -- (mem)     node[midway, right]         {hasMemory};
-\draw[rel] (agent) -- (cfg)     node[midway, sloped, above] {hasConfiguration};
-\draw[rel] (agent) -- (role)    node[midway, above]         {hasRole};
-\draw[rel] (agent) -- (session) node[midway, above]         {hasSession};
-\draw[rel] (agent) -- (group)   node[midway, sloped, above] {memberOf};
-\draw[rel] (agent) -- (tc)      node[midway, right]         {makesToolCall};
-\draw[rel] (agent) -- (plan)    node[midway, sloped, above] {createsPlan};
-\draw[rel] (tc)    -- (tool)    node[midway, right]         {invokesTool};
-\draw[rel] (cap)   -- (tool)    node[midway, sloped, above] {usesTool};
+\draw[rel] (agent) -- (cap)     node[lbl, sloped, pos=0.55] {hasCapability};
+\draw[rel] (agent) -- (mem)     node[lbl, pos=0.5]          {hasMemory};
+\draw[rel] (agent) -- (cfg)     node[lbl, sloped, pos=0.55] {hasConfiguration};
+\draw[rel] (agent) -- (role)    node[lbl, pos=0.5]          {hasRole};
+\draw[rel] (agent) -- (session) node[lbl, pos=0.5]          {hasSession};
+\draw[rel] (agent) -- (group)   node[lbl, sloped, pos=0.5]  {memberOf};
+\draw[rel] (agent) -- (tc)      node[lbl, pos=0.5]          {makesToolCall};
+\draw[rel] (agent) -- (plan)    node[lbl, sloped, pos=0.55] {createsPlan};
+\draw[rel] (tc)    -- (tool)    node[lbl, right, pos=0.5]   {invokesTool};
+\draw[rel] (cap)   -- (tool)    node[lbl, sloped, pos=0.72] {usesTool};
 \end{tikzpicture}
 \caption{\texttt{Agent} sınıfını merkez alan temel nesne özelliği ilişkileri. \texttt{hasConfiguration} \textit{exactly~1}, \texttt{hasCapability} ise \textit{someValuesFrom} kısıtıyla daraltılmıştır.}
 \label{fig:agent-graph}
@@ -569,7 +570,7 @@ Tablo~\ref{tab:all-objprop}, ontolojideki tüm nesne özelliklerini domain, rang
 
 \section{Doğrulama ve Test}
 
-Ontolojinin tasarım aşamasında tanımlanan kavramsal yapının iç tutarlılığı ve Bölüm~1'de belirlenen yetkinlik sorularını yanıtlama kapasitesi, üç ayrı doğrulama yöntemiyle sınanmıştır. İlk yöntemde HermiT reasoner~\cite{glimm2014hermit} aracılığıyla aksiyom kümesinin tutarlılığı kontrol edilmiş ve tanımlı sınıflar üzerinde otomatik sınıflandırma yürütülmüştür. İkinci yöntemde yetkinlik sorularının her biri SPARQL~1.1~\cite{w3c2013sparql} ile sorgulanmış ve elde edilen sonuçlar beklenen sonuçlarla karşılaştırılmıştır. Üçüncü yöntemde ise ontolojinin modelleme kalitesi OOPS! (OntOlogy Pitfall Scanner!)~\cite{poveda2014oops} aracıyla taranmıştır.
+Ontoloji ile birlikte tüm SPARQL sorguları, üretici betikler ve değerlendirme artefaktları açık bir depoda kamuya sunulmaktadır.\footnote{\url{https://github.com/samitugal/ontology-of-llm-based-agentic-ai}} Ontolojinin tasarım aşamasında tanımlanan kavramsal yapının iç tutarlılığı ve Bölüm~1'de belirlenen yetkinlik sorularını yanıtlama kapasitesi, üç ayrı doğrulama yöntemiyle sınanmıştır. İlk yöntemde HermiT reasoner~\cite{glimm2014hermit} aracılığıyla aksiyom kümesinin tutarlılığı kontrol edilmiş ve tanımlı sınıflar üzerinde otomatik sınıflandırma yürütülmüştür. İkinci yöntemde yetkinlik sorularının her biri SPARQL~1.1~\cite{w3c2013sparql} ile sorgulanmış ve elde edilen sonuçlar beklenen sonuçlarla karşılaştırılmıştır. Üçüncü yöntemde ise ontolojinin modelleme kalitesi OOPS! (OntOlogy Pitfall Scanner!)~\cite{poveda2014oops} aracıyla taranmıştır.
 
 \subsection{Reasoner Tutarlılık Kontrolü}
 
@@ -748,6 +749,11 @@ Garg, M. (2026).
 \textit{Agentic Ontology of Work (AOW)}.
 Skan AI, White paper.
 \url{https://www.skan.ai/whitepapers/agentic-ontology-of-work}.
+
+\bibitem{sapkota2025taxonomy}
+Sapkota, R., Roumeliotis, K.~I. and Karkee, M. (2025).
+\textit{AI Agents vs. Agentic AI: A Conceptual Taxonomy, Applications and Challenges}.
+arXiv:2505.10468.
 
 \bibitem{fipa2002acl}
 FIPA (2002).
