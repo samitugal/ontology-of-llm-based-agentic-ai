@@ -1,5 +1,7 @@
 # Ontology of LLM-Based Agentic AI
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20571345.svg)](https://doi.org/10.5281/zenodo.20571345)
+
 An OWL 2 ontology that provides a **framework-independent, formally verifiable conceptual model** for Large Language Model (LLM) based agent systems.
 
 Modern agent frameworks (LangChain, AutoGen, CrewAI, …) express similar
@@ -112,12 +114,15 @@ pdflatex main.tex && pdflatex main.tex
 
 ## Citation
 
-Tugal, S. *BDM Tabanlı Etmen Sistemleri Ontolojisi (An Ontology for Large
-Language Model Based Agent Systems).* Ege University, Department of Computer
-Engineering. ORCID: 0009-0008-6595-7053.
+If you use this ontology, please cite the archived release:
+
+> Tugal, S. and Ünalır, M. O. (2026). *Ontology of LLM-Based Agentic AI
+> (BDM Tabanlı Etmen Sistemleri Ontolojisi).* Zenodo.
+> https://doi.org/10.5281/zenodo.20571345
 
 See [`paper/main.pdf`](paper/main.pdf) for the full paper.
 
-## Author
+## Authors
 
-**Sami Tugal** — Ege University, Department of Computer Engineering, İzmir, Türkiye.
+- **Sami Tugal** — Ege University, Department of Computer Engineering, İzmir, Türkiye. ORCID: [0009-0008-6595-7053](https://orcid.org/0009-0008-6595-7053)
+- **Prof. Dr. Murat Osman Ünalır** — Ege University, Department of Computer Engineering, İzmir, Türkiye. ORCID: [0000-0003-4531-0566](https://orcid.org/0000-0003-4531-0566)

@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this ontology, please cite it as below."
+title: "Ontology of LLM-Based Agentic AI"
+abstract: >-
+  An OWL 2 ontology providing a framework-independent, reasoner-verifiable
+  conceptual model for Large Language Model (LLM) based agent systems,
+  aligned with the OASIS 2 foundational agent ontology.
+type: dataset
+authors:
+  - family-names: Tugal
+    given-names: Sami
+    orcid: "https://orcid.org/0009-0008-6595-7053"
+    affiliation: "Ege University"
+  - family-names: Ünalır
+    given-names: Murat Osman
+    orcid: "https://orcid.org/0000-0003-4531-0566"
+    affiliation: "Ege University"
+version: "1.0.0"
+doi: "10.5281/zenodo.20571345"
+date-released: "2026-06-06"
+url: "https://github.com/samitugal/ontology-of-llm-based-agentic-ai"
+keywords:
+  - ontology
+  - OWL 2
+  - LLM agents
+  - agentic AI
+  - semantic web
+  - OASIS 2

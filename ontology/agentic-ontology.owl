@@ -25,10 +25,31 @@
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="oasis" IRI="http://www.dmi.unict.it/oasis2#"/>
+    <Prefix name="dcterms" IRI="http://purl.org/dc/terms/"/>
 
     <Annotation>
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
         <Literal>BDM Tabanli Etmen Sistemleri Ontolojisi. OASIS 2 ile entegre, cerceve bagimsiz LLM-agent ontolojisi.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
+        <Literal>1.0.0</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:title"/>
+        <Literal xml:lang="tr">BDM Tabanli Etmen Sistemleri Ontolojisi</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:creator"/>
+        <Literal>Sami Tugal (ORCID: 0009-0008-6595-7053)</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:creator"/>
+        <Literal>Murat Osman Unalir (ORCID: 0000-0003-4531-0566)</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:identifier"/>
+        <Literal>https://doi.org/10.5281/zenodo.20571345</Literal>
     </Annotation>
 
     <!-- OASIS 2 ontolojisini import et (terminolojik referans) -->

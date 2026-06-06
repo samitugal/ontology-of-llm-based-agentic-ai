@@ -7,10 +7,17 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:oasis="http://www.dmi.unict.it/oasis2#"
+     xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:llm-agent="http://www.ege.edu.tr/cs/ontology/llm-agent#">
     <owl:Ontology rdf:about="http://www.ege.edu.tr/cs/ontology/llm-agent">
         <owl:versionIRI rdf:resource="http://www.ege.edu.tr/cs/ontology/llm-agent/0.1"/>
         <owl:imports rdf:resource="http://www.dmi.unict.it/oasis2"/>
+        <owl:versionInfo>1.0.0</owl:versionInfo>
+        <dcterms:title xml:lang="tr">BDM Tabanli Etmen Sistemleri Ontolojisi</dcterms:title>
+        <dcterms:creator>Sami Tugal (ORCID: 0009-0008-6595-7053)</dcterms:creator>
+        <dcterms:creator>Murat Osman Unalir (ORCID: 0000-0003-4531-0566)</dcterms:creator>
+        <dcterms:identifier>https://doi.org/10.5281/zenodo.20571345</dcterms:identifier>
+        <rdfs:seeAlso rdf:resource="https://github.com/samitugal/ontology-of-llm-based-agentic-ai"/>
         <rdfs:comment>BDM Tabanli Etmen Sistemleri Ontolojisi. OASIS 2 ile entegre, cerceve bagimsiz LLM-agent ontolojisi.</rdfs:comment>
     </owl:Ontology>
     

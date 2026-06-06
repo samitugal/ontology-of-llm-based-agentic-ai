@@ -1,0 +1,27 @@
+{
+  "title": "Ontology of LLM-Based Agentic AI",
+  "description": "An OWL 2 ontology providing a framework-independent, reasoner-verifiable conceptual model for Large Language Model (LLM) based agent systems, aligned with the OASIS 2 foundational agent ontology. Includes SPARQL competency-question queries, a reflection-based framework-independence check (LangChain, CrewAI), and the accompanying paper.",
+  "upload_type": "dataset",
+  "creators": [
+    {
+      "name": "Tugal, Sami",
+      "orcid": "0009-0008-6595-7053",
+      "affiliation": "Ege University"
+    },
+    {
+      "name": "Ünalır, Murat Osman",
+      "orcid": "0000-0003-4531-0566",
+      "affiliation": "Ege University"
+    }
+  ],
+  "keywords": [
+    "ontology",
+    "OWL 2",
+    "LLM agents",
+    "agentic AI",
+    "semantic web",
+    "OASIS 2",
+    "reasoner",
+    "SPARQL"
+  ]
+}
