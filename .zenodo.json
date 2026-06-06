@@ -2,6 +2,7 @@
   "title": "Ontology of LLM-Based Agentic AI",
   "description": "An OWL 2 ontology providing a framework-independent, reasoner-verifiable conceptual model for Large Language Model (LLM) based agent systems, aligned with the OASIS 2 foundational agent ontology. Includes SPARQL competency-question queries, a reflection-based framework-independence check (LangChain, CrewAI), and the accompanying paper.",
   "upload_type": "dataset",
+  "license": "cc-by-4.0",
   "creators": [
     {
       "name": "Tugal, Sami",

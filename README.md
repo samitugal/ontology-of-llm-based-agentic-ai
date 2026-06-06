@@ -1,6 +1,7 @@
 # Ontology of LLM-Based Agentic AI
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20571345.svg)](https://doi.org/10.5281/zenodo.20571345)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 An OWL 2 ontology that provides a **framework-independent, formally verifiable conceptual model** for Large Language Model (LLM) based agent systems.
 
@@ -126,3 +127,10 @@ See [`paper/main.pdf`](paper/main.pdf) for the full paper.
 
 - **Sami Tugal** — Ege University, Department of Computer Engineering, İzmir, Türkiye. ORCID: [0009-0008-6595-7053](https://orcid.org/0009-0008-6595-7053)
 - **Prof. Dr. Murat Osman Ünalır** — Ege University, Department of Computer Engineering, İzmir, Türkiye. ORCID: [0000-0003-4531-0566](https://orcid.org/0000-0003-4531-0566)
+
+## License
+
+This work is licensed under the [Creative Commons Attribution 4.0 International
+License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). You are free
+to share and adapt the material for any purpose, provided you give appropriate
+credit. See [`LICENSE`](LICENSE) for the full text.

@@ -51,6 +51,10 @@
         <AnnotationProperty abbreviatedIRI="dcterms:identifier"/>
         <Literal>https://doi.org/10.5281/zenodo.20571345</Literal>
     </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:license"/>
+        <Literal>https://creativecommons.org/licenses/by/4.0/</Literal>
+    </Annotation>
 
     <!-- OASIS 2 ontolojisini import et (terminolojik referans) -->
     <Import>http://www.dmi.unict.it/oasis2</Import>
