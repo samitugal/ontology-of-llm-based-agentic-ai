@@ -1,6 +1,6 @@
 # Ontology of LLM-Based Agentic AI
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20571345.svg)](https://doi.org/10.5281/zenodo.20571345)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20571344.svg)](https://doi.org/10.5281/zenodo.20571344)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 An OWL 2 ontology that provides a **framework-independent, formally verifiable conceptual model** for Large Language Model (LLM) based agent systems.
@@ -119,7 +119,7 @@ If you use this ontology, please cite the archived release:
 
 > Tugal, S. and Ünalır, M. O. (2026). *Ontology of LLM-Based Agentic AI
 > (BDM Tabanlı Etmen Sistemleri Ontolojisi).* Zenodo.
-> https://doi.org/10.5281/zenodo.20571345
+> https://doi.org/10.5281/zenodo.20571344
 
 See [`paper/main.pdf`](paper/main.pdf) for the full paper.
 

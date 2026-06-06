@@ -49,7 +49,7 @@
     </Annotation>
     <Annotation>
         <AnnotationProperty abbreviatedIRI="dcterms:identifier"/>
-        <Literal>https://doi.org/10.5281/zenodo.20571345</Literal>
+        <Literal>https://doi.org/10.5281/zenodo.20571344</Literal>
     </Annotation>
     <Annotation>
         <AnnotationProperty abbreviatedIRI="dcterms:license"/>
